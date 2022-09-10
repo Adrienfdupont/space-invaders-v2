@@ -82,11 +82,16 @@ class Missile extends Entity{
 
         super(imgPath, width, x, y);
 
-        setInterval(()=>{this.moveMissile()}, 1000);
+        var missileShot = setInterval(()=>{this.moveMissile()}, 10);
     }
 
     moveMissile(){
-        console.log(this);
+        if (this.getY() < window.innerHeight){
+            this.setY(this.getY() + 5);
+        } else {
+            console.log(window);
+            // this.el.remove();
+        }
     }
 }
 
