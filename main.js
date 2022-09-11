@@ -21,6 +21,18 @@ class Entity{
     getY(){
         return parseInt(this.el.style.bottom.substring(0, this.el.style.bottom.length - 2));
     }
+    getLeft(){
+        return this.getX() - parseInt(this.el.style.width.substring(0, this.el.style.width.length - 2) / 2);
+    }
+    getRight(){
+        return this.getX() + parseInt(this.el.style.width.substring(0, this.el.style.width.length - 2) / 2);
+    }
+    getBottom(){
+        return this.getY() + parseInt(this.el.style.height.substring(0, this.el.style.height.length - 2) / 2);
+    }
+    getTop(){
+        return this.getY() - parseInt(this.el.style.height.substring(0, this.el.style.height.length - 2) / 2);
+    }
     getWidth(){
         return parseInt(this.el.style.width.substring(0, this.el.style.width.length - 2));
     }
@@ -82,17 +94,66 @@ class Missile extends Entity{
 
         super(imgPath, width, x, y);
 
-        var missileShot = setInterval(()=>{this.moveMissile()}, 10);
+        this.el.style.zIndex = '-10';
+        this.animation = setInterval(()=>{this.moveMissile()}, 10);
     }
 
     moveMissile(){
         if (this.getY() < window.innerHeight){
             this.setY(this.getY() + 5);
         } else {
-            console.log(window);
-            // this.el.remove();
+            clearInterval(this.animation);
+            this.el.remove();
+        }
+    }
+}
+
+class Alien extends Entity{
+
+    constructor(imgPath, x, y){
+        
+        let width = window.innerWidth / 20;
+
+        super(imgPath, width, x, y);
+        this.moveAlienRight();
+    }
+
+    moveAlienRight(){
+        if (this.getY() > 0) {
+            this.animation = setInterval(()=>{
+                if (this.getRight() <= window.innerWidth){
+                    this.setX(this.getX() + 1);
+                } else {
+                    clearInterval(this.animation);
+                    this.setY(this.getY() - 30);
+                    this.moveAlienLeft();
+                }
+            }), 10
+        } else {
+            clearInterval(this.animation);
+            this.el.remove();
+        }
+    }
+
+    moveAlienLeft(){
+        if (this.getY() > 0){
+            this.animation = setInterval(()=>{
+                if (this.getLeft() >= 0){
+                    this.setX(this.getX() - 1);
+                } else {
+                    clearInterval(this.animation);
+                    this.setY(this.getY() - 30);
+                    this.moveAlienRight();
+                }
+            }), 10
+        } else {
+            clearInterval(this.animation);
+            this.el.remove();
         }
     }
 }
 
 const ship = new Ship('./images/ship.png');
+const alien1 = new Alien('./images/alien.png', 0, 300);
+
+console.log(alien1.getBottom());
