@@ -39,12 +39,12 @@ class Entity{
         return parseInt(right.substring(0, right.length - 2)) + this.getWidth() / 2;
     }
     getBottom(){
-        return this.getY() - this.getWidth() / 2;
+        return this.getY() - this.getHeight() / 2;
     }
     getTop(){
         const cssObj = window.getComputedStyle(this.el, null);   
         const top = cssObj.getPropertyValue("top");
-        return parseInt(top.substring(0, top.length - 2)) - this.getWidth() / 2;
+        return parseInt(top.substring(0, top.length - 2)) - this.getHeight() / 2;
     }
 
     // getters et setters relatifs à la taille de l'élément
@@ -54,11 +54,16 @@ class Entity{
     setWidth(int){
         this.el.style.width = int + 'px';
     }
+    getHeight(){
+        const cssObj = window.getComputedStyle(this.el, null);
+        const height = cssObj.getPropertyValue("height");
+        return parseInt(height.substring(0, height.length - 2));
+    }
 }
 
 class Ship extends Entity{
 
-    constructor(imgPath, speed){
+    constructor(imgPath, speed, reloadTime){
 
         let width = window.innerWidth / 20;
         let x = window.innerWidth / 2;
@@ -67,6 +72,7 @@ class Ship extends Entity{
 
         this.speed = speed;
         this.loaded = true;
+        this.reloadTime = reloadTime;
         
         // contrôles clavier
         window.addEventListener('keydown', (e)=>{
@@ -94,7 +100,7 @@ class Ship extends Entity{
 
             // rechargement du canon
             this.loaded = false;
-            this.reload = setTimeout(() => {this.loaded = true}, 2000);
+            this.reload = setTimeout(() => {this.loaded = true}, this.reloadTime);
         }
     }
 }
@@ -106,7 +112,6 @@ class Missile extends Entity{
         let width = window.innerWidth / 50;
         let x = ship.getX();
         let y = ship.getY();
-
         super(imgPath, width, x, y);
 
         this.el.style.zIndex = '-10';
@@ -130,9 +135,9 @@ class Alien extends Entity{
     constructor(imgPath, x, y){
         
         let width = window.innerWidth / 20;
-
         super(imgPath, width, x, y);
-        this.moveAlienRight();
+
+        // this.moveAlienRight();
     }
 
     moveAlienRight(){
@@ -142,8 +147,7 @@ class Alien extends Entity{
                     this.setX(this.getX() + 1);
                 } else {
                     clearInterval(this.animation);
-                    this.setY(this.getY() - 30);
-                    this.moveAlienLeft();
+                    this.moveAlienDown(moveAlienLeft);
                 }
             }), 10
         } else {
@@ -153,7 +157,7 @@ class Alien extends Entity{
     }
 
     moveAlienLeft(){
-        if (this.getY() > 0){
+        if (this.getTop() > 0){
             this.animation = setInterval(()=>{
                 if (this.getLeft() > 0){
                     this.setX(this.getX() - 1);
@@ -168,7 +172,10 @@ class Alien extends Entity{
             this.el.remove();
         }
     }
-}
 
-const ship = new Ship('./images/ship.png', 1);
-const alien1 = new Alien('./images/alien.png', 0, 500);
+    // moveAlienDown(nextDirection){
+    //     const from = this.getY();
+    //     const to = this.getY() + this.el.
+    //     while (this.getY < )
+    // }
+}
