@@ -147,7 +147,8 @@ class Alien extends Entity{
                     this.setX(this.getX() + 1);
                 } else {
                     clearInterval(this.animation);
-                    this.moveAlienDown(moveAlienLeft);
+                    this.setY(this.getY() - 30);
+                    this.moveAlienLeft();
                 }
             }), 10
         } else {
