@@ -137,7 +137,7 @@ class Alien extends Entity{
         let width = window.innerWidth / 20;
         super(imgPath, width, x, y);
 
-        // this.moveAlienRight();
+        this.moveAlienRight();
     }
 
     moveAlienRight(){
