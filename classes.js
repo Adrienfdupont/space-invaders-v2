@@ -86,11 +86,11 @@ class Ship extends Entity{
             this.shootMissile();
         }
         // déplacement vaisseau vers la gauche
-        else if (e.key == 'ArrowLeft' && ship.getLeft() >= 0){
+        else if (e.key == 'ArrowLeft' && this.getLeft() >= 0){
             this.setX(this.getX() - window.innerWidth / 100 * this.speed);
         }
         // déplacement vaisseau vers la droite
-        else if (e.key == 'ArrowRight' && ship.getRight() >= 0){
+        else if (e.key == 'ArrowRight' && this.getRight() >= 0){
             this.setX(this.getX() + window.innerWidth / 100 * this.speed);      }
     }
 
@@ -132,10 +132,12 @@ class Missile extends Entity{
 
 class Alien extends Entity{
 
-    constructor(imgPath, x, y){
+    constructor(imgPath, x, y, speed){
         
         let width = window.innerWidth / 20;
         super(imgPath, width, x, y);
+
+        this.speed = speed;
 
         this.moveAlienRight();
     }
@@ -150,8 +152,9 @@ class Alien extends Entity{
                     this.setY(this.getY() - 30);
                     this.moveAlienLeft();
                 }
-            }), 10
+            }), this.speed
         } else {
+            console.log('test');
             clearInterval(this.animation);
             this.el.remove();
         }
@@ -167,16 +170,10 @@ class Alien extends Entity{
                     this.setY(this.getY() - 30);
                     this.moveAlienRight();
                 }
-            }), 10
+            }), this.speed
         } else {
             clearInterval(this.animation);
             this.el.remove();
         }
     }
-
-    // moveAlienDown(nextDirection){
-    //     const from = this.getY();
-    //     const to = this.getY() + this.el.
-    //     while (this.getY < )
-    // }
 }
