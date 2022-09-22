@@ -1,11 +1,12 @@
 class Entity{
 
-    constructor(imgPath, width, x, y){
+    constructor(imgPath, width, height , x, y){
 
         // création de l'élément du DOM
         this.el = document.createElement('img');
         this.el.src = imgPath;
         this.setWidth(width);
+        this.setHeight(height);
         document.body.appendChild(this.el);
 
         // positionnement de l'élément
@@ -33,31 +34,30 @@ class Entity{
     getLeft(){
         return this.getX() - this.getWidth() / 2;
     }
-    getRight(){
-        const cssObj = window.getComputedStyle(this.el, null);   
-        const right = cssObj.getPropertyValue("right");
-        return parseInt(right.substring(0, right.length - 2)) + this.getWidth() / 2;
-    }
     getBottom(){
         return this.getY() - this.getHeight() / 2;
     }
+    getRight(){
+        const right = window.getComputedStyle(this.el, null).right;   
+        return parseInt(right.substring(0, right.length - 2)) + this.getWidth() / 2;
+    }
     getTop(){
-        const cssObj = window.getComputedStyle(this.el, null);   
-        const top = cssObj.getPropertyValue("top");
-        return parseInt(top.substring(0, top.length - 2)) - this.getHeight() / 2;
+        const top = window.getComputedStyle(this.el, null).top;   
+        return parseInt(top.substring(0, top.length - 2)) + this.getHeight() / 2;
     }
 
     // getters et setters relatifs à la taille de l'élément
     getWidth(){
         return parseInt(this.el.style.width.substring(0, this.el.style.width.length - 2));
-    }   
+    }
+    getHeight(){
+        return parseInt(this.el.style.height.substring(0, this.el.style.height.length - 2));
+    }
     setWidth(int){
         this.el.style.width = int + 'px';
     }
-    getHeight(){
-        const cssObj = window.getComputedStyle(this.el, null);
-        const height = cssObj.getPropertyValue("height");
-        return parseInt(height.substring(0, height.length - 2));
+    setHeight(int){
+        this.el.style.height = int +  'px';
     }
 }
 
@@ -66,18 +66,19 @@ class Ship extends Entity{
     constructor(imgPath, speed, reloadTime){
 
         let width = window.innerWidth / 20;
+        let height = window.innerHeight / 10;
         let x = window.innerWidth / 2;
         let y = 50;
-        super(imgPath, width, x, y);
+        super(imgPath, width, height, x, y);
 
         this.speed = speed;
         this.loaded = true;
         this.reloadTime = reloadTime;
         
         // contrôles clavier
-        window.addEventListener('keydown', (e)=>{
+        window.onkeydown = (e)=>{
             this.controllShip(e);
-        })
+        }
     }
 
     controllShip(e){
@@ -135,7 +136,8 @@ class Alien extends Entity{
     constructor(imgPath, x, y, speed){
         
         let width = window.innerWidth / 20;
-        super(imgPath, width, x, y);
+        let height = 70;
+        super(imgPath, width, height, x, y);
 
         this.speed = speed;
 
@@ -143,34 +145,33 @@ class Alien extends Entity{
     }
 
     moveAlienRight(){
-        if (this.getTop() > 0) {
+        if (this.getY() > 0) {
             this.animation = setInterval(()=>{
                 if (this.getRight() > 0){
-                    this.setX(this.getX() + 1);
+                    this.setX(this.getX() + this.speed);
                 } else {
                     clearInterval(this.animation);
-                    this.setY(this.getY() - 30);
+                    this.setY(this.getY() - this.getHeight());
                     this.moveAlienLeft();
                 }
-            }), this.speed
+            }), 10
         } else {
-            console.log('test');
             clearInterval(this.animation);
             this.el.remove();
         }
     }
 
     moveAlienLeft(){
-        if (this.getTop() > 0){
+        if (this.getY() > 0){
             this.animation = setInterval(()=>{
                 if (this.getLeft() > 0){
-                    this.setX(this.getX() - 1);
+                    this.setX(this.getX() - this.speed);
                 } else {
                     clearInterval(this.animation);
-                    this.setY(this.getY() - 30);
+                    this.setY(this.getY() - this.getHeight());
                     this.moveAlienRight();
                 }
-            }), this.speed
+            }), 10
         } else {
             clearInterval(this.animation);
             this.el.remove();
