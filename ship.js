@@ -34,7 +34,12 @@ class Ship extends Entity{
 
     shootMissile(){
         if (this.loaded){
-            new Missile('./images/missile.png', missileData.width, missileData.height, missileData.speed);
+            new Missile(
+                './images/missile.png',
+                missileData.width,
+                missileData.height,
+                missileData.speed
+            );
 
             // rechargement du canon
             this.loaded = false;

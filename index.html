@@ -45,19 +45,27 @@
         };
 
         // génération du vaisseau
-        const ship = new Ship(shipData.img, shipData.width, shipData.height, shipData.speed, shipData.reloadTime);
+        const ship = new Ship(
+            shipData.img,
+            shipData.width,
+            shipData.height,
+            shipData.speed,
+            shipData.reloadTime
+        );
 
         // génération des aliens
         for (let y = 0; y < alienData.nbRows ; y ++) {
 
             for (let x = 0; x < alienData.nbCols ; x ++){
 
-                const alien = new Alien(alienData.img,
+                const alien = new Alien(
+                    alienData.img,
                     alienData.width,
                     alienData.height,
                     (10 + x * alienData.width * 1.3),
-                    window.innerHeight - y * alienData.height * 1.3,
-                    alienData.speed);
+                    window.innerHeight - alienData.height -10 - y * alienData.height * 1.3,
+                    alienData.speed
+                );
             }
         }
 

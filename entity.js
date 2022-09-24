@@ -8,6 +8,7 @@ class Entity{
     this.img.style.width = width + 'px';
     this.img.style.height = height + 'px';
     document.body.appendChild(this.img);
+    
     // positionnement de l'élément
     this.img.style.position = 'absolute';
     this.setLeft(left);
