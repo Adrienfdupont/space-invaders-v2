@@ -30,7 +30,7 @@ class Alien extends Entity{
         if (this.getTop() > 0){
             this.animation = setInterval(()=>{
                 if (this.getLeft() > 0){
-                    this.setLeft(this.getLeft() - this.speed / 2);
+                    this.setLeft(this.getLeft() - this.speed);
                 } else {
                     clearInterval(this.animation);
                     this.setBottom(this.getBottom() - this.getHeight());

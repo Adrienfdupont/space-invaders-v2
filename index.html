@@ -23,25 +23,25 @@
 
         const shipData = {
             img : './images/ship.png',
-            width : 5,
-            height : 5,
-            speed : 1,
+            width : 5 * kw,
+            height : 5 * kw,
+            speed : 1 * kw,
             reloadTime : 2000
         };
         const missileData = {
             img : './images/missile.png',
-            width : 1,
-            height : 4,
-            speed : 0.5 * kh,
+            width : 1 * kw,
+            height : 4 * kw,
+            speed : 0.4 * kh,
         };
 
         const alienData = {
             nbRows : 3,
             nbCols : 7,
             img : './images/alien.png',
-            width : 4,
-            height : 3,
-            speed : 1 
+            width : 4 * kw,
+            height : 3 * kw,
+            speed : 0.1 * kw
         };
 
         // génération du vaisseau
@@ -55,8 +55,8 @@
                 const alien = new Alien(alienData.img,
                     alienData.width,
                     alienData.height,
-                    (10 + x * alienData.width * 1.3 * kw),
-                    window.innerHeight - y * alienData.height * 1.3 * kw,
+                    (10 + x * alienData.width * 1.3),
+                    window.innerHeight - y * alienData.height * 1.3,
                     alienData.speed);
             }
         }
