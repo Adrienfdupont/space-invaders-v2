@@ -10,7 +10,7 @@ class Missile extends Entity{
         this.img.style.zIndex = '-10';
         this.speed = speed;
 
-        this.animation = setInterval(() => {this.moveMissile()}, 10);
+        this.animation = setInterval(() => {this.moveMissile()},10);
     }
   
     moveMissile(){
