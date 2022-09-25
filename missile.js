@@ -4,12 +4,10 @@ class Missile extends Entity{
 
         let left = ship.getLeft() + ship.getWidth() / 2 - missileData.width / 2;
         let bottom = ship.getBottom() + ship.getHeight() / 2;
-        // appel du constructeur parent
         super(imgPath, width, height, left, bottom);
 
         this.img.style.zIndex = '-10';
         this.speed = speed;
-
         this.animation = setInterval(() => {this.moveMissile()},10);
     }
   

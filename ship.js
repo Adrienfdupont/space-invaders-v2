@@ -4,13 +4,11 @@ class Ship extends Entity{
 
         let left = window.innerWidth / 2 - width / 2;
         let bottom = 10;
-        // appel du constructeur parent
         super(imgPath, width, height, left, bottom);
 
         this.speed = speed;
         this.loaded = true;
         this.reloadTime = reloadTime;
-
         // contrôles clavier
         window.onkeydown = (e)=>{
             this.controllShip(e);

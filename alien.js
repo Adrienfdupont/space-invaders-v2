@@ -5,7 +5,6 @@ class Alien extends Entity{
         super(imgPath, width, height, left, bottom);
 
         this.speed = speed;
-
         this.moveAlienRight();
     }
 
