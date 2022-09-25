@@ -33,7 +33,7 @@ class Ship extends Entity{
     shootMissile(){
         if (this.loaded){
             new Missile(
-                './images/missile.png',
+                missileData.img,
                 missileData.width,
                 missileData.height,
                 missileData.speed
