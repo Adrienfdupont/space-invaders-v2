@@ -5,40 +5,32 @@ class Alien extends Entity{
         super(imgPath, width, height, left, bottom);
 
         this.speed = speed;
-        this.moveAlienRight();
+        this.animation = requestAnimationFrame(()=>this.moveRight());
     }
 
-    moveAlienRight(){
-        if (this.getBottom() + this.getHeight() > 0) {
-            this.animation = setInterval(()=>{
-                if (this.getRight() > 0){
-                    this.setLeft(this.getLeft() + this.speed);
-                } else {
-                    clearInterval(this.animation);
-                    this.setBottom(this.getBottom() - this.getHeight() * 1.3);
-                    this.moveAlienLeft();
-                }
-            }), 10
-        } else {
-            clearInterval(this.animation);
-            this.img.remove();
+    moveRight(){
+        if (this.getBottom() + this.getHeight() > 0){
+            if (this.getRight() > 0){
+                this.setLeft(this.getLeft() + this.speed);
+                requestAnimationFrame(()=>this.moveRight());
+            } else {
+                cancelAnimationFrame(this.animation);
+                this.setBottom(this.getBottom() - this.getHeight() * 1.3);
+                this.animation = requestAnimationFrame(()=>this.moveLeft());
+            }
         }
     }
 
-    moveAlienLeft(){
+    moveLeft(){
         if (this.getBottom() + this.getHeight() > 0){
-            this.animation = setInterval(()=>{
-                if (this.getLeft() > 0){
-                    this.setLeft(this.getLeft() - this.speed);
-                } else {
-                    clearInterval(this.animation);
-                    this.setBottom(this.getBottom() - this.getHeight() * 1.3);
-                    this.moveAlienRight();
-                }
-            }), 10
-        } else {
-            clearInterval(this.animation);
-            this.img.remove();
+            if (this.getLeft() > 0){
+                this.setLeft(this.getLeft() - this.speed);
+                requestAnimationFrame(()=>this.moveLeft());
+            } else {
+                cancelAnimationFrame(this.animation);
+                this.setBottom(this.getBottom() - this.getHeight() * 1.3);
+                this.animation = requestAnimationFrame(()=>this.moveRight());
+            }
         }
     }
 }

@@ -8,13 +8,16 @@ class Missile extends Entity{
 
         this.img.style.zIndex = '-10';
         this.speed = speed;
-
-        this.animation = requestAnimationFrame(()=>this.moveMissile());
+        this.animation = requestAnimationFrame(()=>this.move());
     }
   
-    moveMissile(){
-        this.setBottom(this.getBottom() + 4,5);
-        console.log('i');
-        requestAnimationFrame(()=>this.moveMissile());
+    move(){
+        if (this.getBottom() < window.innerHeight){
+            this.setBottom(this.getBottom() + this.speed);
+            requestAnimationFrame(()=>this.move());
+        } else {
+            cancelAnimationFrame(this.animation);
+            this.img.remove();
+        }
     }
 }
