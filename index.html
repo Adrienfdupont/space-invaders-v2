@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body class="overflow-hidden bg-black">
+<body class="overflow-hidden bg-slate-900">
 
     <script src="entity.js"></script>
     <script src="ship.js"></script>
     <script src="missile.js"></script>
     <script src="alien.js"></script>
+    <script src="laser-shot.js"></script>
 
     <script>
 
@@ -42,7 +43,14 @@
             width : 4 * kw,
             height : 3 * kw,
             speed : 2,
-            reloadTime : 8000
+            reloadTime : 10000
+        };
+
+        const laserShotData = {
+            img : './images/laser-shot.png',
+            width : 0.5 * kw,
+            height : 2 * kw,
+            speed : 2
         };
 
         // génération du vaisseau
@@ -65,7 +73,8 @@
                     alienData.height,
                     (10 + x * alienData.width * 1.8),
                     window.innerHeight - alienData.height -10 - y * alienData.height * 1.8,
-                    alienData.speed
+                    alienData.speed,
+                    alienData.reloadTime
                 );
             }
         }

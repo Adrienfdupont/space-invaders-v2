@@ -11,14 +11,14 @@ class Ship extends Entity{
         this.reloadTime = reloadTime;
         // contrôles clavier
         window.onkeydown = (e)=>{
-            this.controllShip(e);
+            this.controll(e);
         }
     }
 
-    controllShip(e){
+    controll(e){
         // tir du missile
         if (e.key == ' '){
-            this.shootMissile();
+            this.shoot();
         }
         // déplacement vaisseau vers la gauche
         else if (e.key == 'ArrowLeft' && this.getLeft() >= 0){
@@ -30,7 +30,7 @@ class Ship extends Entity{
         }
     }
 
-    shootMissile(){
+    shoot(){
         if (this.loaded){
             new Missile(
                 missileData.img,
@@ -41,7 +41,8 @@ class Ship extends Entity{
 
             // rechargement du canon
             this.loaded = false;
-            this.reload = setTimeout(() => {this.loaded = true}, this.reloadTime);
+            setTimeout(() => {
+                this.loaded = true}, this.reloadTime);
         }
     }
 }
