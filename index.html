@@ -24,15 +24,15 @@
 
         const shipData = {
             img : './images/ship.png',
-            width : 5 * kw,
-            height : 5 * kw,
+            width : 3 * kw,
+            height : 3 * kw,
             speed : 1 * kw,
             reloadTime : 2000
         };
         const missileData = {
             img : './images/missile.png',
-            width : 1 * kw,
-            height : 4 * kw,
+            width : 0.5 * kw,
+            height : 2 * kw,
             speed : 0.25 * kh,
         };
 
@@ -40,16 +40,16 @@
             nbRows : 3,
             nbCols : 7,
             img : './images/alien.png',
-            width : 4 * kw,
-            height : 3 * kw,
+            width : 2 * kw,
+            height : 1.5 * kw,
             speed : 2,
             reloadTime : 10000
         };
 
         const laserShotData = {
             img : './images/laser-shot.png',
-            width : 0.5 * kw,
-            height : 2 * kw,
+            width : 0.2 * kw,
+            height : 0.8 * kw,
             speed : 2
         };
 
@@ -71,8 +71,8 @@
                     alienData.img,
                     alienData.width,
                     alienData.height,
-                    (10 + x * alienData.width * 1.8),
-                    window.innerHeight - alienData.height -10 - y * alienData.height * 1.8,
+                    (10 + x * alienData.width * 2),
+                    window.innerHeight - alienData.height -10 - y * alienData.height * 2,
                     alienData.speed,
                     alienData.reloadTime
                 );

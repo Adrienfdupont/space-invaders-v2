@@ -22,7 +22,7 @@ class Alien extends Entity{
                 requestAnimationFrame(()=>this.moveRight());
             } else {
                 cancelAnimationFrame(this.animation);
-                this.setBottom(this.getBottom() - this.getHeight() * 1.8);
+                this.setBottom(this.getBottom() - this.getHeight() * 2);
                 this.animation = requestAnimationFrame(()=>this.moveLeft());
             }
         }
@@ -35,7 +35,7 @@ class Alien extends Entity{
                 requestAnimationFrame(()=>this.moveLeft());
             } else {
                 cancelAnimationFrame(this.animation);
-                this.setBottom(this.getBottom() - this.getHeight() * 1.8);
+                this.setBottom(this.getBottom() - this.getHeight() * 2);
                 this.animation = requestAnimationFrame(()=>this.moveRight());
             }
         }
