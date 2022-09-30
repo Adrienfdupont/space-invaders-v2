@@ -1,11 +1,14 @@
 class Alien extends Entity{
 
+    static instances = [];
+
     constructor(imgPath, width, height, left, bottom, speed){
 
         super(imgPath, width, height, left, bottom);
 
         this.speed = speed;
         this.animation = requestAnimationFrame(()=>this.moveRight());
+        Alien.instances.push(this);
     }
 
     moveRight(){
@@ -28,9 +31,13 @@ class Alien extends Entity{
                 requestAnimationFrame(()=>this.moveLeft());
             } else {
                 cancelAnimationFrame(this.animation);
-                this.setBottom(this.getBottom() - this.getHeight() * 1.3);
+                this.setBottom(this.getBottom() - this.getHeight() * 1.8);
                 this.animation = requestAnimationFrame(()=>this.moveRight());
             }
         }
+    }
+
+    die(){
+        this.img.remove();
     }
 }
