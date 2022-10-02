@@ -30,6 +30,7 @@
             speed : 1 * kw,
             reloadTime : 2000
         };
+
         const missileData = {
             img : './images/missile.png',
             width : 0.5 * kw,
@@ -56,8 +57,8 @@
 
         const wallData = {
             img : '/images/wall.png',
-            width : kw,
-            height : kw,
+            width : 0.5 * kw,
+            height : 0.5 * kw,
         }
 
         // génération du vaisseau
@@ -87,26 +88,26 @@
         }
 
         // génération des murs
-        const wallLength = Math.round((window.innerWidth / 9) / kw);
+        const wallLength = Math.round((window.innerWidth / 9) / wallData.width);
         const spaceLength = Math.round(window.innerWidth / 9);
 
         for (let nbWalls = 0; nbWalls < 4; nbWalls++) {
-
             let start = spaceLength + spaceLength * nbWalls * 2;
 
-            for (let y = 0; y < 4; y++) {
+            for (let y = 0; y < 6; y++) {
+                let yStart = shipData.height + 50 + y * wallData.height;
 
                 for (let x = 0; x < wallLength; x++) {
+                    let xStart = start + x * wallData.width;
                 
-                    if (y >= 2 || x <= 1 || x >= wallLength - 2){
+                    if (y >= 3 || x <= 2 || x >= wallLength - 3){
                         new Wall(
                             wallData.img,
                             wallData.width,
                             wallData.height,
-                            start + x * kw,
-                            shipData.height + 50 + y * kw
+                            xStart,
+                            yStart
                         )
-                        console.log()
                     }
                 }    
             }
