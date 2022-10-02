@@ -13,27 +13,32 @@ class LaserShot extends Entity{
 
     move(){
         if (this.getBottom() + this.getHeight() > 0){
+
             this.setBottom(this.getBottom() - this.speed);
-            this.checkCollision();
+            this.checkCollision(ship);
+            Wall.instances.forEach(wall => {
+                this.checkCollision(wall);
+            });
             requestAnimationFrame(()=>this.move());
+
         } else {
+
             cancelAnimationFrame(this.animation);
             this.img.remove();
         }
     }
 
-    checkCollision(){
-        console.log('test')
-        if (this.getBottom() <= ship.getBottom() + ship.getHeight()
-            && this.getBottom() + this.getHeight() > ship.getBottom() + ship.getHeight()){
+    checkCollision(other){
+        if (this.getBottom() <= other.getBottom() + other.getHeight()
+            && this.getBottom() + this.getHeight() > other.getBottom() + other.getHeight()){
 
-                if (this.getLeft() >= ship.getLeft() &&
-                this.getLeft() <= ship.getLeft() + ship.getWidth()
-                || this.getLeft() + this.getWidth() >= ship.getLeft() &&
-                this.getLeft() + this.getWidth() <= ship.getLeft() + ship.getWidth()){
-
-                    ship.die();
-                }
+            if (this.getLeft() >= other.getLeft() &&
+            this.getLeft() <= other.getLeft() + other.getWidth()
+            || this.getLeft() + this.getWidth() >= other.getLeft() &&
+            this.getLeft() + this.getWidth() <= other.getLeft() + other.getWidth()){
+                
+                other.die();
             }
+        }
     }
 }
