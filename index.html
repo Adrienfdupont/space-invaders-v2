@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body class="overflow-hidden bg-slate-900">
+<body class="overflow-hidden bg-gray-900">
 
     <script src="entity.js"></script>
     <script src="ship.js"></script>
@@ -84,32 +84,6 @@
                     alienData.speed,
                     alienData.reloadTime
                 );
-            }
-        }
-
-        // génération des murs
-        const wallLength = Math.round((window.innerWidth / 9) / wallData.width);
-        const spaceLength = Math.round(window.innerWidth / 9);
-
-        for (let nbWalls = 0; nbWalls < 4; nbWalls++) {
-            let start = spaceLength + spaceLength * nbWalls * 2;
-
-            for (let y = 0; y < 6; y++) {
-                let yStart = shipData.height + 50 + y * wallData.height;
-
-                for (let x = 0; x < wallLength; x++) {
-                    let xStart = start + x * wallData.width;
-                
-                    if (y >= 3 || x <= 2 || x >= wallLength - 3){
-                        new Wall(
-                            wallData.img,
-                            wallData.width,
-                            wallData.height,
-                            xStart,
-                            yStart
-                        )
-                    }
-                }    
             }
         }
         
