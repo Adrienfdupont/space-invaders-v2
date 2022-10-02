@@ -45,4 +45,8 @@ class Ship extends Entity{
                 this.loaded = true}, this.reloadTime);
         }
     }
+
+    die(){
+        this.img.remove();
+    }
 }
