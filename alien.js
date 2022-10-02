@@ -11,8 +11,9 @@ class Alien extends Entity{
         this.reloadTime = reloadTime;
         this.animation = requestAnimationFrame(()=>this.moveRight());
         Alien.instances.push(this);
-        setTimeout(() => {
-            this.shoot()}, Math.random() * (20000 - 2000) + 2000);
+        setInterval(
+            ()=>{this.shoot()},
+            Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
     }
 
     moveRight(){
@@ -52,9 +53,10 @@ class Alien extends Entity{
             );
     
             // rechargement du canon
-            setTimeout(() => {
-                this.shoot()}, this.reloadTime);
-        }
+            setTimeout(
+                () => {this.shoot()},
+                Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
+            }
         }
 
     die(){
