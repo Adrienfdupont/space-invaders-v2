@@ -88,21 +88,28 @@
 
         // génération des murs
         const wallLength = Math.round((window.innerWidth / 9) / kw);
+        const spaceLength = Math.round(window.innerWidth / 9);
 
-        for (let y = 0; y < 4; y++) {
+        for (let nbWalls = 0; nbWalls < 4; nbWalls++) {
 
-            for (let x = 0; x < wallLength; x++) {
+            let start = spaceLength + spaceLength * nbWalls * 2;
 
-                if (y <= 1 || x <= 1 || x >= wallLength - 2){
-                    new Wall(
-                        wallData.img,
-                        wallData.width,
-                        wallData.height,
-                        x * kw,
-                        shipData.height + 50 + y * kw
-                    )
-                }
-            }    
+            for (let y = 0; y < 4; y++) {
+
+                for (let x = 0; x < wallLength; x++) {
+                
+                    if (y >= 2 || x <= 1 || x >= wallLength - 2){
+                        new Wall(
+                            wallData.img,
+                            wallData.width,
+                            wallData.height,
+                            start + x * kw,
+                            shipData.height + 50 + y * kw
+                        )
+                        console.log()
+                    }
+                }    
+            }
         }
 
     </script>
