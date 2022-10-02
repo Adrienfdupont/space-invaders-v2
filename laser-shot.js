@@ -14,10 +14,14 @@ class LaserShot extends Entity{
     move(){
         if (this.getBottom() + this.getHeight() > 0){
 
+            // déplacement du tir
             this.setBottom(this.getBottom() - this.speed);
-
-            this.checkShipCollision();
-            this.checkWallCollision();
+            // collisions avec murs et vaisseau
+            this.checkCollision(ship);
+            Wall.instances.forEach(wall=>{
+                this.checkCollision(wall);
+            })
+            // nouvelle frame
             requestAnimationFrame(()=>this.move());
 
         } else {
@@ -27,33 +31,17 @@ class LaserShot extends Entity{
         }
     }
 
-    checkShipCollision(){
-        if (this.getBottom() <= ship.getBottom() + ship.getHeight()
-            && this.getBottom() + this.getHeight() > ship.getBottom() + ship.getHeight()){
+    checkCollision(other){
+        if (this.getBottom() <= other.getBottom() + other.getHeight()
+            && this.getBottom() + this.getHeight() > other.getBottom() + other.getHeight()){
 
-            if (this.getLeft() >= ship.getLeft() &&
-            this.getLeft() <= ship.getLeft() + ship.getWidth()
-            || this.getLeft() + this.getWidth() >= ship.getLeft() &&
-            this.getLeft() + this.getWidth() <= ship.getLeft() + ship.getWidth()){
+            if (this.getLeft() >= other.getLeft() &&
+            this.getLeft() <= other.getLeft() + other.getWidth()
+            || this.getLeft() + this.getWidth() >= other.getLeft() &&
+            this.getLeft() + this.getWidth() <= other.getLeft() + other.getWidth()){
                 
-                ship.die();
+                other.die();
             }
-        }
-    }
-
-    checkWallCollision(){
-        if (this.getBottom() <= shipData.height + 50 + 6 * wallData.height){
-
-            Wall.instances.forEach(wall =>{
-
-                if (this.getLeft() >= wall.getLeft() &&
-                this.getLeft() <= wall.getLeft() + wall.getWidth()
-                || this.getLeft() + this.getWidth() >= wall.getLeft() &&
-                this.getLeft() + this.getWidth() <= wall.getLeft() + wall.getWidth()){
-
-                        wall.die();
-                }
-            })
         }
     }
 }

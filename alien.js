@@ -61,6 +61,7 @@ class Alien extends Entity{
 
     die(){
         this.img.remove();
+        cancelAnimationFrame(this.animation);
         this.alive = false;
     }
 }
