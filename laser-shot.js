@@ -16,9 +16,6 @@ class LaserShot extends Entity{
 
             this.setBottom(this.getBottom() - this.speed);
             this.checkCollision(ship);
-            Wall.instances.forEach(wall => {
-                this.checkCollision(wall);
-            });
             requestAnimationFrame(()=>this.move());
 
         } else {
@@ -38,7 +35,13 @@ class LaserShot extends Entity{
             this.getLeft() + this.getWidth() <= other.getLeft() + other.getWidth()){
                 
                 other.die();
+                this.die();
             }
         }
+    }
+
+    die(){
+        this.img.remove();
+        cancelAnimationFrame(this.animation);
     }
 }

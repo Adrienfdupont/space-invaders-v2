@@ -6,12 +6,11 @@ class Alien extends Entity{
 
         super(imgPath, width, height, left, bottom);
 
-        this.alive = true;
         this.speed = speed;
         this.reloadTime = reloadTime;
         this.animation = requestAnimationFrame(()=>this.moveRight());
         Alien.instances.push(this);
-        setInterval(
+        this.shot = setInterval(
             ()=>{this.shoot()},
             Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
     }
@@ -43,24 +42,21 @@ class Alien extends Entity{
     }
 
     shoot(){
-        if (this.alive){
-            new LaserShot(
-                laserShotData.img,
-                laserShotData.width,
-                laserShotData.height,
-                laserShotData.speed,
-                this
-            );
-    
-            // rechargement du canon
-            setTimeout(
-                () => {this.shoot()},
-                Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
-            }
+        new LaserShot(
+            laserShotData.img,
+            laserShotData.width,
+            laserShotData.height,
+            laserShotData.speed,
+            this
+        );
+        // rechargement du canon
+        setTimeout(
+            () => {this.shoot()},
+            Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
         }
 
     die(){
         this.img.remove();
-        this.alive = false;
+        clearInterval(this.shot);
     }
 }
