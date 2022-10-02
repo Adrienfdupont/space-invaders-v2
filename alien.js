@@ -56,7 +56,7 @@ class Alien extends Entity{
         }
 
     die(){
-        learInterval(this.shot);
+        clearInterval(this.shot);
         this.img.remove();
     }
 }
