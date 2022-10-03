@@ -18,7 +18,7 @@ class Alien extends Entity{
         if (this.getBottom() + this.getHeight() > 0){
             if (this.getRight() > 0){
                 this.setLeft(this.getLeft() + this.speed);
-                this.animation = requestAnimationFrame(()=>this.moveRight());
+                requestAnimationFrame(()=>this.moveRight());
             } else {
                 cancelAnimationFrame(this.animation);
                 this.setBottom(this.getBottom() - this.getHeight() * 2);
