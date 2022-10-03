@@ -10,8 +10,7 @@ class Alien extends Entity{
         this.reloadTime = reloadTime;
         this.animation = requestAnimationFrame(()=>this.moveRight());
         Alien.instances.push(this);
-        this.shot = setInterval(
-            ()=>{this.shoot()},
+        this.shot = setInterval(()=>{this.shoot()},
             Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
     }
 
@@ -19,12 +18,14 @@ class Alien extends Entity{
         if (this.getBottom() + this.getHeight() > 0){
             if (this.getRight() > 0){
                 this.setLeft(this.getLeft() + this.speed);
-                requestAnimationFrame(()=>this.moveRight());
+                this.animation = requestAnimationFrame(()=>this.moveRight());
             } else {
                 cancelAnimationFrame(this.animation);
                 this.setBottom(this.getBottom() - this.getHeight() * 2);
                 this.animation = requestAnimationFrame(()=>this.moveLeft());
             }
+        } else {
+            this.die();
         }
     }
 
@@ -32,12 +33,14 @@ class Alien extends Entity{
         if (this.getBottom() + this.getHeight() > 0){
             if (this.getLeft() > 0){
                 this.setLeft(this.getLeft() - this.speed);
-                requestAnimationFrame(()=>this.moveLeft());
+                this.animation = requestAnimationFrame(()=>this.moveLeft());
             } else {
                 cancelAnimationFrame(this.animation);
                 this.setBottom(this.getBottom() - this.getHeight() * 2);
                 this.animation = requestAnimationFrame(()=>this.moveRight());
             }
+        } else {
+            this.die();
         }
     }
 
@@ -56,7 +59,9 @@ class Alien extends Entity{
         }
 
     die(){
+        // this.img.remove();
+        Alien.instances.splice(Alien.instances.indexOf(this), 1);
+        cancelAnimationFrame(this.animation);
         clearInterval(this.shot);
-        this.img.remove();
     }
 }
