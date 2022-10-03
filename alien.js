@@ -52,14 +52,10 @@ class Alien extends Entity{
             laserShotData.speed,
             this
         );
-        // rechargement du canon
-        setTimeout(
-            () => {this.shoot()},
-            Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
-        }
+    }
 
     die(){
-        // this.img.remove();
+        this.img.remove();
         Alien.instances.splice(Alien.instances.indexOf(this), 1);
         cancelAnimationFrame(this.animation);
         clearInterval(this.shot);
