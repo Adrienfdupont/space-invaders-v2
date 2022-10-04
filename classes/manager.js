@@ -41,6 +41,11 @@ class Manager{
         height : 0.5 * Manager.kw,
     }
 
+    static initGame(){
+        Manager.generateShip();
+        Manager.generateAliens();
+    }
+
     static generateShip(){
 
         window.ship = new Ship(
