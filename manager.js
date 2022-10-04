@@ -43,7 +43,7 @@ class Manager{
 
     static generateShip(){
 
-        const ship = new Ship(
+        window.ship = new Ship(
             Manager.shipData.img,
             Manager.shipData.width,
             Manager.shipData.height,

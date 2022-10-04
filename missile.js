@@ -2,7 +2,7 @@ class Missile extends Entity{
   
     constructor(imgPath, width, height, speed){
 
-        let left = ship.getLeft() + ship.getWidth() / 2 - missileData.width / 2;
+        let left = ship.getLeft() + ship.getWidth() / 2 - Manager.missileData.width / 2;
         let bottom = ship.getBottom() + ship.getHeight() / 2;
         super(imgPath, width, height, left, bottom);
 
