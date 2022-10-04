@@ -1,3 +1,34 @@
 body{
     background-color: #000;
+    color: #52FF00;
+    overflow: hidden;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+#title{
+    font-size: xx-large;
+}
+
+#play-button{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30%;
+    color: #52FF00;
+    background-color: #000;
+    border-color: #52FF00;
+    padding: 0.5em 3em;
+    font-size: x-large;
+}
+
+#play-button:hover{
+    color: #000;
+    background-color: #52FF00;
 }

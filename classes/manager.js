@@ -41,9 +41,17 @@ class Manager{
         height : 0.5 * Manager.kw,
     }
 
-    static initGame(){
+    static displayElements(){
         Manager.generateShip();
         Manager.generateAliens();
+    }
+
+    static initGame(){
+        Alien.instances.forEach(alien =>{
+            alien.animation = requestAnimationFrame(()=>alien.moveRight());
+            alien.shot = setInterval(()=>{alien.shoot()},
+                Math.floor(Math.random() * (alien.reloadTime + alien.reloadTime / 2 - alien.reloadTime / 2) + alien.reloadTime / 2));
+        })
     }
 
     static generateShip(){
@@ -68,7 +76,7 @@ class Manager{
                     Manager.alienData.width,
                     Manager.alienData.height,
                     (10 + x * Manager.alienData.width * 2),
-                    window.innerHeight - Manager.alienData.height -10 - y * Manager.alienData.height * 2,
+                    window.innerHeight - 60 - Manager.alienData.height - 10 - y * Manager.alienData.height * 2,
                     Manager.alienData.speed,
                     Manager.alienData.reloadTime
                 );

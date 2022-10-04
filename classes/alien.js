@@ -8,8 +8,11 @@ class Alien extends Entity{
 
         this.speed = speed;
         this.reloadTime = reloadTime;
-        this.animation = requestAnimationFrame(()=>this.moveRight());
         Alien.instances.push(this);
+    }
+
+    initAction(){
+        this.animation = requestAnimationFrame(()=>this.moveRight());
         this.shot = setInterval(()=>{this.shoot()},
             Math.floor(Math.random() * (this.reloadTime + this.reloadTime / 2 - this.reloadTime / 2) + this.reloadTime / 2));
     }
