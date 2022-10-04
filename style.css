@@ -1,6 +1,6 @@
 body{
     background-color: #000;
-    color: #52FF00;
+    color: #52ff00;
     overflow: hidden;
 }
 
@@ -10,6 +10,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 0.5em;
+    z-index: 0;
 }
 
 #title{
@@ -21,14 +22,24 @@ header{
     left: 50%;
     transform: translateX(-50%);
     bottom: 30%;
-    color: #52FF00;
+    color: #52ff00;
     background-color: #000;
-    border-color: #52FF00;
+    border-color: #52ff00;
     padding: 0.5em 3em;
     font-size: x-large;
 }
 
 #play-button:hover{
     color: #000;
-    background-color: #52FF00;
+    background-color: #52ff00;
+}
+
+#settings{
+    display: none;
+    position: absolute;
+    z-index: 100;
+    right: 0px;
+    background-color: #1f1f1f;
+    width: 30%;
+    height: 100%;
 }
