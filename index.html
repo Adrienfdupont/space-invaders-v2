@@ -10,26 +10,31 @@
     <script src="./classes/missile.js"></script>
     <script src="./classes/alien.js"></script>
     <script src="./classes/laser-shot.js"></script>
-    <script src="./classes/wall.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6dcb44414d.js" crossorigin="anonymous"></script>
     <title>Space Invaders</title>
 </head>
 <body>
 
-    
+    <!-- menu déroulant des paramètres -->
+    <div id="settings">
+        <i id="settings-close-button" class="fa fa-xmark fa-2xl"></i>
+        <div id="alien-rows">
+            Aliens per row
+            <input id="row-number" type="text" value="8">
+            <button id="alien-row-add-button">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+    </div>
 
     <header>
-        <div>Niveau</div>
+        <div>Level</div>
         <div id="title">Space Invaders</div>
-        <div id="settings-button">Game settings</div>
+        <div id="settings-open-button">Game settings</div>
     </header>
 
     <button id="play-button">Play</button>
-
-    <div id="settings">
-        <!-- <i class="fa fa-envelope"></i> -->
-    </div>
 
     <script src="./index.js"></script>
 </body>

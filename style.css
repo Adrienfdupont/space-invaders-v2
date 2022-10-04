@@ -1,4 +1,6 @@
 body{
+    margin: 0;
+    padding: 0;
     background-color: #000;
     color: #52ff00;
     overflow: hidden;
@@ -34,12 +36,59 @@ header{
     background-color: #52ff00;
 }
 
+#settings-open-button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#settings-close-button{
+    cursor: pointer;
+}
+
 #settings{
-    display: none;
+    flex-direction: column;
+    transform: translateX(100%);
     position: absolute;
+    padding: 3em;
     z-index: 100;
     right: 0px;
     background-color: #1f1f1f;
     width: 30%;
     height: 100%;
+}
+
+#alien-rows{
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#alien-row-add-button{
+    margin-left: 2em;
+    padding: 0.2em 0.5em;
+}
+
+#row-number{
+    width: 2em;
+    margin-left: 2em;
+}
+
+
+@keyframes show-settings{
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes hide-settings{
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(100%);
+    }
 }
