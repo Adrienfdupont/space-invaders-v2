@@ -2,7 +2,7 @@ class LaserShot extends Entity{
     
     constructor(imgPath, width, height, speed, alien){
 
-        let left = alien.getLeft() + alien.getWidth() / 2 - laserShotData.width / 2;
+        let left = alien.getLeft() + alien.getWidth() / 2 - Manager.laserShotData.width / 2;
         let bottom = alien.getBottom() + alien.getHeight() / 2;
         super(imgPath, width, height, left, bottom);
 

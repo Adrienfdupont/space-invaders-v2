@@ -46,10 +46,10 @@ class Alien extends Entity{
 
     shoot(){
         new LaserShot(
-            laserShotData.img,
-            laserShotData.width,
-            laserShotData.height,
-            laserShotData.speed,
+            Manager.laserShotData.img,
+            Manager.laserShotData.width,
+            Manager.laserShotData.height,
+            Manager.laserShotData.speed,
             this
         );
     }
