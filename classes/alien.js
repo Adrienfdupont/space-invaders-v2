@@ -65,19 +65,4 @@ class Alien extends Entity{
         cancelAnimationFrame(this.animation);
         clearInterval(this.shot);
     }
-
-    static deleteRows(){
-
-        Alien.rows.forEach(row => {
-            let rowLastAlien = row[row.length - 1];
-            let deleteButton = document.createElement('img');
-            document.body.appendChild(deleteButton);
-            deleteButton.src = '../images/trash.png';
-            deleteButton.style.position = 'absolute';
-            deleteButton.style.left = rowLastAlien.getLeft() + rowLastAlien.getWidth() + 10 + 'px';
-            deleteButton.style.bottom = rowLastAlien.getBottom() + 'px';
-            deleteButton.style.height = rowLastAlien.getHeight() + 'px';
-            
-        })
-    }
 }

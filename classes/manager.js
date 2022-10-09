@@ -84,33 +84,4 @@ class Manager{
     //     }
     // }
 
-    static addAlienRow(nb){
-
-        // trouver la ligne d'aliens la plus basse
-        let lower = window.innerHeight - 50
-        Alien.rows.forEach(row => {
-            if (row[0].getBottom() < lower){
-                lower = row[0].getBottom();
-            }
-        })
-
-        // on définit le point d'accroche
-        const y = lower - 2 * Manager.alienData.height;
-
-        let row = [];
-        for (let x = 0; x < nb; x++) {
-            row.push(
-                new Alien(
-                    Manager.alienData.img,
-                    Manager.alienData.width,
-                    Manager.alienData.height,
-                    10 + x * Manager.alienData.width * 2,
-                    y,
-                    Manager.alienData.speed,
-                    Manager.alienData.reloadTime
-                )
-            )
-        }
-        Alien.rows.push(row)
-    }
 }
