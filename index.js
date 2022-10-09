@@ -4,7 +4,7 @@
 const playButton = document.querySelector('#play-button');
 playButton.onclick = ()=>{
     Manager.initGame();
-}
+};
 
 
 // affichage des paramètres de jeu
@@ -13,10 +13,10 @@ const settingsOpenButton = document.querySelector('#settings-open-button');
 const settingsCloseButton = document.querySelector('#settings-close-button');
 settingsOpenButton.onclick = () => {
     settings.style.animation = 'show-settings 0.3s linear 0s 1 normal forwards';
-}
+};
 settingsCloseButton.onclick = () => {
     settings.style.animation = 'hide-settings 0.3s linear 0s 1 normal forwards';
-}
+};
 
 
 // ajout d'aliens
@@ -25,7 +25,7 @@ const rowNumber = document.querySelector('#row-number');
 const alienRows = [];
 alienRowAddButton.onclick = () => {
     addAlienRow();
-}
+};
 
 function addAlienRow() {
 
@@ -62,19 +62,20 @@ function addAlienRow() {
 
 function buildRowParameters(alienRow) {
 
-    const rowLastAlien = alienRow.instances[alienRow.instances.length - 1];
+    const rowLastAlien = getLastAlien(alienRow);
 
     // construire la div contenant les boutons
     alienRow.parameters = document.createElement('div');
     document.body.appendChild(alienRow.parameters);
     alienRow.parameters.style.position = 'absolute';
-    alienRow.parameters.style.left = rowLastAlien.getLeft() + rowLastAlien.getWidth() + 10 + 'px';
-    alienRow.parameters.style.bottom = rowLastAlien.getBottom() + 'px';
+    alienRow.parameters.style.left = rowLastAlien.getLeft() + rowLastAlien.getWidth() * 2 + 'px';
+    alienRow.parameters.style.top = rowLastAlien.getTop() + 'px';
 
     // construire le bouton de suppression
     const removeButton = document.createElement('i');
     alienRow.parameters.appendChild(removeButton);
     removeButton.classList.add('fa-solid', 'fa-trash');
+    removeButton.style.marginRight = '10px';
     removeButton.onclick = () => {
         deleteRow(alienRow);
     }
@@ -83,17 +84,19 @@ function buildRowParameters(alienRow) {
     const addButton = document.createElement('i');
     alienRow.parameters.appendChild(addButton);
     addButton.classList.add('fa-solid', 'fa-plus');
+    addButton.style.marginRight = '10px';
     addButton.onclick = () => {
         addAlien(alienRow);
-    }
+    };
 
     // construire le bouton de suppression d'un alien
     const deleteButton = document.createElement('i');
     alienRow.parameters.appendChild(deleteButton);
     deleteButton.classList.add('fa-solid', 'fa-minus');
+    deleteButton.style.marginRight = '10px';
     deleteButton.onclick = () => {
         deleteAlien(alienRow);
-    }
+    };
 }
 
 
@@ -109,7 +112,7 @@ function deleteRow(alienRow) {
 
 function addAlien(alienRow) {
 
-    const rowLastAlien = alienRow.instances[alienRow.instances.length - 1];
+    const rowLastAlien = getLastAlien(alienRow);
 
     const alien = new Alien(
         Manager.alienData.img,
@@ -126,19 +129,19 @@ function addAlien(alienRow) {
     );
 
     // on met à jour la position des paramètres de la ligne
-    alienRow.parameters.style.left = alien.getLeft() + alien.getWidth() + 10 + 'px';
+    alienRow.parameters.style.left = alien.getLeft() + alien.getWidth() * 2 + 'px';
 }
 
 
 function deleteAlien(alienRow){
 
-    const alienToDelete = alienRow.instances[alienRow.instances.length - 1];
+    const alienToDelete = getLastAlien(alienRow);
     alienToDelete.img.remove();
     alienRow.instances.splice(alienRow.instances.indexOf(alienToDelete));
 
     // on met à jour la position des paramètres de la ligne
     const lastAlien = getLastAlien(alienRow);
-    alienRow.parameters.style.left = lastAlien.getLeft() + lastAlien.getWidth() + 10 + 'px';
+    alienRow.parameters.style.left = lastAlien.getLeft() + lastAlien.getWidth() * 2 + 'px';
 }
 
 

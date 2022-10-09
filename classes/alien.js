@@ -2,8 +2,6 @@ class Alien extends Entity{
 
     static instances = [];
 
-    static rows = [];
-
     constructor(imgPath, width, height, left, bottom, speed, reloadTime){
 
         super(imgPath, width, height, left, bottom);
