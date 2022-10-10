@@ -55,7 +55,6 @@ function addAlienRow() {
         );
     }
     alienRows.push(alienRow);
-
     buildRowParameters(alienRow);
 }
 
@@ -93,7 +92,6 @@ function buildRowParameters(alienRow) {
     const deleteButton = document.createElement('i');
     alienRow.parameters.appendChild(deleteButton);
     deleteButton.classList.add('fa-solid', 'fa-minus');
-    deleteButton.style.marginRight = '10px';
     deleteButton.onclick = () => {
         deleteAlien(alienRow);
     };
@@ -106,7 +104,7 @@ function deleteRow(alienRow) {
         alien.img.remove();
     });
     alienRow.parameters.remove();
-    alienRows.splice(alienRows.indexOf(alienRow));
+    alienRows.splice(alienRows.indexOf(alienRow), 1);
 }
 
 
@@ -128,7 +126,7 @@ function addAlien(alienRow) {
         alien
     );
 
-    // on met à jour la position des paramètres de la ligne
+    // on met à jour la position des paramètres de la ligne d'aliens
     alienRow.parameters.style.left = alien.getLeft() + alien.getWidth() * 2 + 'px';
 }
 
@@ -139,7 +137,7 @@ function deleteAlien(alienRow){
     alienToDelete.img.remove();
     alienRow.instances.splice(alienRow.instances.indexOf(alienToDelete));
 
-    // on met à jour la position des paramètres de la ligne
+    // on met à jour la position des paramètres de la ligne d'aliens
     const lastAlien = getLastAlien(alienRow);
     alienRow.parameters.style.left = lastAlien.getLeft() + lastAlien.getWidth() * 2 + 'px';
 }
