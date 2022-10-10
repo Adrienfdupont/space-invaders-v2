@@ -9,10 +9,6 @@ class Ship extends Entity{
         this.speed = speed;
         this.loaded = true;
         this.reloadTime = reloadTime;
-        // contrôles clavier
-        window.onkeydown = (e)=>{
-            this.controll(e);
-        }
     }
 
     controll(e){

@@ -1,22 +1,13 @@
 'use strict';
 
-// lancement de la partie
-const playButton = document.querySelector('#play-button');
-playButton.onclick = ()=>{
-    Manager.initGame();
-};
-
-
-// affichage des paramètres de jeu
-const settings = document.querySelector('#settings');
-const settingsOpenButton = document.querySelector('#settings-open-button');
-const settingsCloseButton = document.querySelector('#settings-close-button');
-settingsOpenButton.onclick = () => {
-    settings.style.animation = 'show-settings 0.3s linear 0s 1 normal forwards';
-};
-settingsCloseButton.onclick = () => {
-    settings.style.animation = 'hide-settings 0.3s linear 0s 1 normal forwards';
-};
+// génération du vaisseau
+const ship = new Ship(
+    Manager.shipData.img,
+    Manager.shipData.width,
+    Manager.shipData.height,
+    Manager.shipData.speed,
+    Manager.shipData.reloadTime
+);
 
 
 // ajout d'aliens
@@ -26,6 +17,31 @@ const alienRows = [];
 alienRowAddButton.onclick = () => {
     addAlienRow();
 };
+
+
+// affichage des paramètres de jeu
+const settings = document.querySelector('#settings');
+const settingsOpenButton = document.querySelector('#settings-open-button');
+const settingsCloseButton = document.querySelector('#settings-close-button');
+settingsOpenButton.onclick = () => {
+    showSettings();
+};
+settingsCloseButton.onclick = () => {
+    hideSettings();
+};
+
+
+// lancement de la partie
+const playButton = document.querySelector('#play-button');
+playButton.onclick = ()=>{
+    hideSettings();
+    playButton.style.display = 'none';
+    Manager.initGame();
+};
+
+
+// -------------------- fonctions utiles ------------------
+
 
 function addAlienRow() {
 
@@ -140,6 +156,24 @@ function deleteAlien(alienRow){
     // on met à jour la position des paramètres de la ligne d'aliens
     const lastAlien = getLastAlien(alienRow);
     alienRow.parameters.style.left = lastAlien.getLeft() + lastAlien.getWidth() * 2 + 'px';
+}
+
+
+function showSettings() {
+    settings.style.animation = 'show-settings 0.3s linear 0s 1 normal forwards';
+    // on affiche les options des lignes d'aliens
+    alienRows.forEach(row => {
+        row.parameters.style.display = 'flex';
+    })
+}
+
+
+function hideSettings() {
+    settings.style.animation = 'hide-settings 0.3s linear 0s 1 normal forwards';
+    // on cache les options des lignes d'aliens
+    alienRows.forEach(row => {
+        row.parameters.style.display = 'none';
+    })
 }
 
 

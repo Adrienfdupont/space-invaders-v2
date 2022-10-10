@@ -41,47 +41,18 @@ class Manager{
         height : 0.5 * Manager.kw,
     }
 
-    static displayElements(){
-        Manager.generateShip();
-        Manager.generateAliens();
-    }
-
     static initGame(){
+
+        // animations des aliens
         Alien.instances.forEach(alien =>{
             alien.animation = requestAnimationFrame(()=>alien.moveRight());
             alien.shot = setInterval(()=>{alien.shoot()},
                 Math.floor(Math.random() * (alien.reloadTime + alien.reloadTime / 2 - alien.reloadTime / 2) + alien.reloadTime / 2));
         })
+
+        // contrôles du vaisseau
+        window.onkeydown = (e)=>{
+            ship.controll(e);
+        }
     }
-
-    static generateShip(){
-
-        window.ship = new Ship(
-            Manager.shipData.img,
-            Manager.shipData.width,
-            Manager.shipData.height,
-            Manager.shipData.speed,
-            Manager.shipData.reloadTime
-        );
-    }
-
-    // static generateAliens(){
-
-    //     for (let y = 0; y < Manager.alienData.nbRows ; y ++) {
-
-    //         for (let x = 0; x < Manager.alienData.nbCols ; x ++){
-
-    //             new Alien(
-    //                 Manager.alienData.img,
-    //                 Manager.alienData.width,
-    //                 Manager.alienData.height,
-    //                 (10 + x * Manager.alienData.width * 2),
-    //                 window.innerHeight - 60 - Manager.alienData.height - 10 - y * Manager.alienData.height * 2,
-    //                 Manager.alienData.speed,
-    //                 Manager.alienData.reloadTime
-    //             );
-    //         }
-    //     }
-    // }
-
 }
