@@ -135,7 +135,7 @@ function deleteAlien(alienRow){
 
     const alienToDelete = getLastAlien(alienRow);
     alienToDelete.img.remove();
-    alienRow.instances.splice(alienRow.instances.indexOf(alienToDelete));
+    alienRow.instances.splice(alienRow.instances.indexOf(alienToDelete), 1);
 
     // on met à jour la position des paramètres de la ligne d'aliens
     const lastAlien = getLastAlien(alienRow);
