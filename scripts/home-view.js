@@ -27,8 +27,11 @@ alienRowAddButton.onclick = () => {
 
 
 // lancement de la partie
-const playButton = document.querySelector('#play-button').onclick = ()=>{
-    homepage.style.display = 'none';
+const playButton = document.querySelector('#play-button');
+const play = document.querySelector('#play');
+playButton.onclick = ()=>{
+
+    play.style.display = 'block';
     Manager.initGame();
 };
 

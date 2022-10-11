@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./classes/manager.js"></script>
-    <script src="./classes/entity.js"></script>
-    <script src="./classes/ship.js"></script>
-    <script src="./classes/missile.js"></script>
-    <script src="./classes/alien.js"></script>
-    <script src="./classes/laser-shot.js"></script>
+    <script src="./scripts/classes/manager.js"></script>
+    <script src="./scripts/classes/entity.js"></script>
+    <script src="./scripts/classes/ship.js"></script>
+    <script src="./scripts/classes/missile.js"></script>
+    <script src="./scripts/classes/alien.js"></script>
+    <script src="./scripts/classes/laser-shot.js"></script>
     <link rel="stylesheet" href="./style/main.css">
-    <link rel="stylesheet" href="./style/home.css">
-    <link rel="stylesheet" href="./style/play.css">
+    <link rel="stylesheet" href="./style/home-view.css">
+    <link rel="stylesheet" href="./style/play-view.css">
     <script src="https://kit.fontawesome.com/6dcb44414d.js" crossorigin="anonymous"></script>
     <title>Space Invaders</title>
 </head>
 <body>
 
-    <div id="homepage">
+    <div id="home-view">
         <!-- menu déroulant des paramètres -->
         <div id="settings">
             <i id="settings-close-button" class="fa fa-xmark fa-2xl"></i>
@@ -39,17 +39,19 @@
 
         <button id="play-button" class="button">Play</button>
 
-        <script src="./home.js"></script>
+        <script src="./scripts/home-view.js"></script>
     </div>
 
 
     
-    <div id="play-page">
+    <div id="play-view">
         <header>
             <div>Level</div>
-            <button class="button">Pause</button>
+            <button class="button" id="pause-button">Pause</button>
             <div>Score</div>
         </header>
+
+        <script src="./scripts/play-view.js"></script>
     </div>
 
 </body>
