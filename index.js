@@ -1,13 +1,7 @@
 'use strict';
 
 // génération du vaisseau
-const ship = new Ship(
-    Manager.shipData.img,
-    Manager.shipData.width,
-    Manager.shipData.height,
-    Manager.shipData.speed,
-    Manager.shipData.reloadTime
-);
+const ship = Manager.generateShip();
 
 
 // ajout d'aliens
@@ -59,15 +53,7 @@ function addAlienRow() {
     alienRow.instances = [];
     for (let x = 0; x < rowNumber.value; x++) {
         alienRow.instances.push(
-            new Alien(
-                Manager.alienData.img,
-                Manager.alienData.width,
-                Manager.alienData.height,
-                10 + x * Manager.alienData.width * 2,
-                y,
-                Manager.alienData.speed,
-                Manager.alienData.reloadTime
-            )
+            Manager.generateAlien(10 + x * Manager.alienData.width * 2, y)
         );
     }
     alienRows.push(alienRow);

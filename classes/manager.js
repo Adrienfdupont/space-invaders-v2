@@ -41,6 +41,32 @@ class Manager{
         height : 0.5 * Manager.kw,
     }
 
+
+    static generateShip(){
+        return new Ship(
+            Manager.shipData.img,
+            Manager.shipData.width,
+            Manager.shipData.height,
+            Manager.shipData.speed,
+            Manager.shipData.reloadTime
+        );
+    }
+
+    
+    static generateAlien(x, y){
+        
+        return new Alien(
+            Manager.alienData.img,
+            Manager.alienData.width,
+            Manager.alienData.height,
+            x,
+            y,
+            Manager.alienData.speed,
+            Manager.alienData.reloadTime
+        )
+    }
+
+
     static initGame(){
 
         // animations des aliens
