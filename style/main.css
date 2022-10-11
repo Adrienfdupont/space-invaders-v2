@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #000;
+    color: #52ff00;
+    overflow: hidden;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.button{
+    color: #52ff00;
+    background-color: #000;
+    border-color: #52ff00;
+    padding: 0.5em 3em;
+    font-size: x-large;
+}
+
+.button:hover{
+    color: #000;
+    background-color: #52ff00;
+}

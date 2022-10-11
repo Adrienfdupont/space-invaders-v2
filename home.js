@@ -1,17 +1,5 @@
 'use strict';
 
-// génération du vaisseau
-const ship = Manager.generateShip();
-
-
-// ajout d'aliens
-const alienRowAddButton = document.querySelector('#alien-row-add-button');
-const rowNumber = document.querySelector('#row-number');
-const alienRows = [];
-alienRowAddButton.onclick = () => {
-    addAlienRow();
-};
-
 
 // affichage des paramètres de jeu
 const settings = document.querySelector('#settings');
@@ -25,11 +13,22 @@ settingsCloseButton.onclick = () => {
 };
 
 
+// génération du vaisseau
+const ship = Manager.generateShip();
+
+
+// ajout d'aliens
+const alienRowAddButton = document.querySelector('#alien-row-add-button');
+const rowNumber = document.querySelector('#alien-row-number');
+const alienRows = [];
+alienRowAddButton.onclick = () => {
+    addAlienRow();
+};
+
+
 // lancement de la partie
-const playButton = document.querySelector('#play-button');
-playButton.onclick = ()=>{
-    hideSettings();
-    playButton.style.display = 'none';
+const playButton = document.querySelector('#play-button').onclick = ()=>{
+    homepage.style.display = 'none';
     Manager.initGame();
 };
 
@@ -57,24 +56,24 @@ function addAlienRow() {
         );
     }
     alienRows.push(alienRow);
-    buildRowParameters(alienRow);
+    buildRowOptions(alienRow);
 }
 
 
-function buildRowParameters(alienRow) {
+function buildRowOptions(alienRow) {
 
     const rowLastAlien = getLastAlien(alienRow);
 
     // construire la div contenant les boutons
-    alienRow.parameters = document.createElement('div');
-    document.body.appendChild(alienRow.parameters);
-    alienRow.parameters.style.position = 'absolute';
-    alienRow.parameters.style.left = rowLastAlien.getLeft() + rowLastAlien.getWidth() * 2 + 'px';
-    alienRow.parameters.style.top = rowLastAlien.getTop() + 'px';
+    alienRow.options = document.createElement('div');
+    document.body.appendChild(alienRow.options);
+    alienRow.options.style.position = 'absolute';
+    alienRow.options.style.left = rowLastAlien.getLeft() + rowLastAlien.getWidth() * 2 + 'px';
+    alienRow.options.style.top = rowLastAlien.getTop() + 'px';
 
     // construire le bouton de suppression
     const removeButton = document.createElement('i');
-    alienRow.parameters.appendChild(removeButton);
+    alienRow.options.appendChild(removeButton);
     removeButton.classList.add('fa-solid', 'fa-trash');
     removeButton.style.marginRight = '10px';
     removeButton.onclick = () => {
@@ -83,7 +82,7 @@ function buildRowParameters(alienRow) {
 
     // construire le bouton d'ajout d'alien
     const addButton = document.createElement('i');
-    alienRow.parameters.appendChild(addButton);
+    alienRow.options.appendChild(addButton);
     addButton.classList.add('fa-solid', 'fa-plus');
     addButton.style.marginRight = '10px';
     addButton.onclick = () => {
@@ -92,7 +91,7 @@ function buildRowParameters(alienRow) {
 
     // construire le bouton de suppression d'un alien
     const deleteButton = document.createElement('i');
-    alienRow.parameters.appendChild(deleteButton);
+    alienRow.options.appendChild(deleteButton);
     deleteButton.classList.add('fa-solid', 'fa-minus');
     deleteButton.onclick = () => {
         deleteAlien(alienRow);
@@ -105,7 +104,7 @@ function deleteRow(alienRow) {
     alienRow.instances.forEach(alien => {
         alien.img.remove();
     });
-    alienRow.parameters.remove();
+    alienRow.options.remove();
     alienRows.splice(alienRows.indexOf(alienRow), 1);
 }
 
@@ -128,8 +127,8 @@ function addAlien(alienRow) {
         alien
     );
 
-    // on met à jour la position des paramètres de la ligne d'aliens
-    alienRow.parameters.style.left = alien.getLeft() + alien.getWidth() * 2 + 'px';
+    // on met à jour la position des options de la ligne d'aliens
+    alienRow.options.style.left = alien.getLeft() + alien.getWidth() * 2 + 'px';
 }
 
 
@@ -139,9 +138,9 @@ function deleteAlien(alienRow){
     alienToDelete.img.remove();
     alienRow.instances.splice(alienRow.instances.indexOf(alienToDelete), 1);
 
-    // on met à jour la position des paramètres de la ligne d'aliens
+    // on met à jour la position des options de la ligne d'aliens
     const lastAlien = getLastAlien(alienRow);
-    alienRow.parameters.style.left = lastAlien.getLeft() + lastAlien.getWidth() * 2 + 'px';
+    alienRow.options.style.left = lastAlien.getLeft() + lastAlien.getWidth() * 2 + 'px';
 }
 
 
@@ -149,7 +148,7 @@ function showSettings() {
     settings.style.animation = 'show-settings 0.3s linear 0s 1 normal forwards';
     // on affiche les options des lignes d'aliens
     alienRows.forEach(row => {
-        row.parameters.style.display = 'flex';
+        row.options.style.display = 'flex';
     })
 }
 
@@ -158,7 +157,7 @@ function hideSettings() {
     settings.style.animation = 'hide-settings 0.3s linear 0s 1 normal forwards';
     // on cache les options des lignes d'aliens
     alienRows.forEach(row => {
-        row.parameters.style.display = 'none';
+        row.options.style.display = 'none';
     })
 }
 
