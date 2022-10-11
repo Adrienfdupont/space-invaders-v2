@@ -26,12 +26,18 @@ alienRowAddButton.onclick = () => {
 };
 
 
-// lancement de la partie
+// lancement de la partie : changement de vue
 const playButton = document.querySelector('#play-button');
-const play = document.querySelector('#play');
-playButton.onclick = ()=>{
-
-    play.style.display = 'block';
+const playView = document.querySelector('#play-view');
+const homeView = document.querySelector('#home-view');
+playButton.onclick = () => {
+    // vérifier que le joueur a bien ajouté des aliens
+    if (alienRows.length === 0){
+        
+    }
+    hideSettings();
+    playView.style.display = 'block';
+    homeView.style.display = 'none';
     Manager.initGame();
 };
 

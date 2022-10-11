@@ -32,27 +32,31 @@
         </div>
 
         <header>
-            <div>Level</div>
+            <div id="level">Level</div>
             <div id="title">Space Invaders</div>
             <div id="settings-open-button">Game settings</div>
         </header>
 
         <button id="play-button" class="button">Play</button>
 
-        <script src="./scripts/home-view.js"></script>
+        <div id="pop-up">
+                Please add aliens to begin
+        </div>
+
     </div>
 
 
     
     <div id="play-view">
         <header>
-            <div>Level</div>
-            <button class="button" id="pause-button">Pause</button>
-            <div>Score</div>
+            <div id="level">Level</div>
+            <button id="pause-button" class="button">Pause</button>
+            <div id="score">Score</div>
         </header>
 
-        <script src="./scripts/play-view.js"></script>
     </div>
 
+    <script src="./scripts/home-view.js"></script>
+    <script src="./scripts/play-view.js"></script>
 </body>
 </html>

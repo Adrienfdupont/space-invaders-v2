@@ -1,3 +1,16 @@
-#play{
+#play-view{
     display: none;
+}
+
+#pause-button{
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+}
+
+#score{
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

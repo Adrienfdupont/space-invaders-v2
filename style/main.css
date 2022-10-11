@@ -8,11 +8,14 @@ body{
 }
 
 header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding: 0.5em;
+    position: relative;
+}
+
+#level{
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 
 .button{
