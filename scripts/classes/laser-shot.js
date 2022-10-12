@@ -1,5 +1,7 @@
 class LaserShot extends Entity{
     
+    static instances = [];
+
     constructor(imgPath, width, height, speed, alien){
 
         let left = alien.getLeft() + alien.getWidth() / 2 - Manager.laserShotData.width / 2;
@@ -9,6 +11,8 @@ class LaserShot extends Entity{
         this.img.style.zIndex = '-10';
         this.speed = speed;
         this.animation = requestAnimationFrame(()=>this.move());
+
+        LaserShot.instances.push(this);
     }
 
     move(){

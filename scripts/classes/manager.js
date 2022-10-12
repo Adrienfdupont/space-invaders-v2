@@ -81,4 +81,16 @@ class Manager{
             ship.controll(e);
         }
     }
+
+    
+    static pauseGame(){
+        Alien.instances.forEach(alien =>{
+            cancelAnimationFrame(alien.animation);
+        })
+
+        LaserShot.instances.forEach(laserShot => {
+            cancelAnimationFrame(laserShot.animation)
+        })
+
+    }
 }
