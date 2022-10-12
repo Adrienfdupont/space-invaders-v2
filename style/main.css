@@ -30,3 +30,25 @@ header{
     color: #000;
     background-color: #52ff00;
 }
+
+
+/* pop-up en cas de non-ajout d'aliens */
+.pop-up{
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #1f1f1f;
+    width: 30em;
+    height: 10em;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-up-close-button{
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    cursor: pointer;
+}

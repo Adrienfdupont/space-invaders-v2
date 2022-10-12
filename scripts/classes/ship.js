@@ -42,6 +42,22 @@ class Ship extends Entity{
         }
     }
 
+    initAction(){
+        window.onkeydown = (e) => {
+            this.controll(e);
+        }
+    }
+
+    pause(){
+        window.onkeydown = false;
+    }
+
+    resume(){
+        window.onkeydown = (e) => {
+            this.controll(e);
+        }
+    }
+
     die(){
         this.img.remove();
     }

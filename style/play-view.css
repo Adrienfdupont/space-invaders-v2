@@ -14,3 +14,10 @@
     right: 10px;
     top: 10px;
 }
+
+#pause-pop-up{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+}

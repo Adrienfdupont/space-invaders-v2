@@ -1,4 +1,6 @@
 class Missile extends Entity{
+
+    static instances = [];
   
     constructor(imgPath, width, height, speed){
 
@@ -8,14 +10,15 @@ class Missile extends Entity{
 
         this.img.style.zIndex = '-10';
         this.speed = speed;
-        this.animation = requestAnimationFrame(()=>this.move());
+        this.animation = requestAnimationFrame(() => this.move());
+        Missile.instances.push(this);
     }
   
     move(){
         if (this.getBottom() < window.innerHeight){
             this.setBottom(this.getBottom() + this.speed);
             this.checkCollision();
-            requestAnimationFrame(()=>this.move());
+            this.animation = requestAnimationFrame(()=>this.move());
         } else {
             cancelAnimationFrame(this.animation);
             this.img.remove();
@@ -40,8 +43,14 @@ class Missile extends Entity{
         });
     }
 
+    pause(){
+        cancelAnimationFrame(this.animation);
+    }
+
     die(){
         cancelAnimationFrame(this.animation);
         this.img.remove();
+        Missile.instances.splice(Missile.instances.indexOf(this), 1);
+        
     }
 }

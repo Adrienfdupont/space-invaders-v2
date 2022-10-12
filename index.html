@@ -18,6 +18,7 @@
 </head>
 <body>
 
+    <!----------------------- home view (page d'accueil) ------------------------------------->
     <div id="home-view">
         <!-- menu déroulant des paramètres -->
         <div id="settings">
@@ -39,21 +40,25 @@
 
         <button id="play-button" class="button">Play</button>
 
-        <div id="pop-up">
-            <i id="pop-up-close-button" class="fa fa-xmark fa-2xl"></i>
+        <div id="alien-pop-up" class="pop-up">
+            <i id="alien-pop-up-close-button" class="fa fa-xmark fa-2xl pop-up-close-button"></i>
             <p>Please add aliens to begin</p>
         </div>
 
     </div>
 
-
-    
+    <!------------------------- play view (page de jeu) ---------------------------------->
     <div id="play-view">
         <header>
             <div id="level">Level</div>
             <button id="pause-button" class="button">Pause</button>
             <div id="score">Score</div>
         </header>
+
+        <div id="pause-pop-up" class="pop-up">
+            <i id="pause-pop-up-close-button" class="fa fa-xmark fa-2xl pop-up-close-button"></i>
+            <div id="resume-button">Resume</div>
+        </div>
 
     </div>
 

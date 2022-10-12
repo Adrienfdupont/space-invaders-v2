@@ -76,21 +76,37 @@ class Manager{
                 Math.floor(Math.random() * (alien.reloadTime + alien.reloadTime / 2 - alien.reloadTime / 2) + alien.reloadTime / 2));
         })
 
-        // contrôles du vaisseau
-        window.onkeydown = (e)=>{
-            ship.controll(e);
-        }
+        ship.initAction();
     }
 
     
     static pauseGame(){
-        Alien.instances.forEach(alien =>{
-            cancelAnimationFrame(alien.animation);
-        })
 
         LaserShot.instances.forEach(laserShot => {
-            cancelAnimationFrame(laserShot.animation)
+            laserShot.pause();
         })
 
+        Alien.instances.forEach(alien => {
+            alien.pause();
+        })
+
+        Missile.instances.forEach(missile => {
+            missile.pause();
+        })
+
+        ship.pause();
+    }
+
+
+    static resumeGame(){
+        LaserShot.instances.forEach(laserShot => {
+            laserShot.resume();
+        })
+
+        Alien.instances.forEach(alien => {
+            alien.resume();
+        })
+
+        ship.resume();
     }
 }

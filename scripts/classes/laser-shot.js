@@ -20,13 +20,21 @@ class LaserShot extends Entity{
 
             this.setBottom(this.getBottom() - this.speed);
             this.checkCollision(ship);
-            requestAnimationFrame(()=>this.move());
+            this.animation = requestAnimationFrame(() => this.move());
 
         } else {
 
             cancelAnimationFrame(this.animation);
             this.img.remove();
         }
+    }
+
+    pause(){
+        cancelAnimationFrame(this.animation);
+    }
+
+    resume(){
+        this.animation = requestAnimationFrame(() => this.move());
     }
 
     checkCollision(other){

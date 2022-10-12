@@ -21,7 +21,7 @@ class Alien extends Entity{
         if (this.getBottom() + this.getHeight() > 0){
             if (this.getRight() > 0){
                 this.setLeft(this.getLeft() + this.speed);
-                requestAnimationFrame(()=>this.moveRight());
+                this.animation = requestAnimationFrame(()=>this.moveRight());
             } else {
                 cancelAnimationFrame(this.animation);
                 this.setBottom(this.getBottom() - this.getHeight() * 2);
@@ -55,6 +55,11 @@ class Alien extends Entity{
             Manager.laserShotData.speed,
             this
         );
+    }
+
+    pause(){
+        cancelAnimationFrame(this.animation);
+        clearInterval(this.shot);
     }
 
     die(){

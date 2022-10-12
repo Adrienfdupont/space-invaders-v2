@@ -30,11 +30,11 @@ alienRowAddButton.onclick = () => {
 const playButton = document.querySelector('#play-button');
 const playView = document.querySelector('#play-view');
 const homeView = document.querySelector('#home-view');
-const popUp = document.querySelector('#pop-up'); 
+const alienPopUp = document.querySelector('#alien-pop-up'); 
 playButton.onclick = () => {
     // vérifier que le joueur a bien ajouté des aliens
     if (alienRows.length === 0){
-        popUp.style.display = 'flex';
+        alienPopUp.style.display = 'flex';
     } else {
         hideSettings();
         playView.style.display = 'block';
@@ -45,9 +45,9 @@ playButton.onclick = () => {
 
 
 // contrôle pop-up
-const popUpCloseButton = document.querySelector('#pop-up-close-button');
-popUpCloseButton.onclick = () => {
-    popUp.style.display = 'none';
+const alienPopUpCloseButton = document.querySelector('#alien-pop-up-close-button');
+alienPopUpCloseButton.onclick = () => {
+    alienPopUp.style.display = 'none';
 }
 
 
