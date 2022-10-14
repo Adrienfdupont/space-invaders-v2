@@ -7,6 +7,7 @@
     left: 50%;
     top: 10px;
     transform: translateX(-50%);
+    padding: 0.3em 0.3em;
 }
 
 #score{
@@ -20,4 +21,16 @@
     justify-content: center;
     align-items: center;
     background-color: #1f1f1f;
+}
+
+#resume-button{
+    cursor: pointer;
+}
+
+#resume-button:hover{
+    text-decoration: underline;
+}
+
+#pop-up-message{
+    margin-bottom: 2em;
 }

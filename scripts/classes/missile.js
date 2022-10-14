@@ -47,6 +47,10 @@ class Missile extends Entity{
         cancelAnimationFrame(this.animation);
     }
 
+    resume(){
+        this.animation = this.move();
+    }
+
     die(){
         cancelAnimationFrame(this.animation);
         this.img.remove();

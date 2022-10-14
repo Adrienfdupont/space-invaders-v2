@@ -99,6 +99,7 @@ class Manager{
 
 
     static resumeGame(){
+
         LaserShot.instances.forEach(laserShot => {
             laserShot.resume();
         })
@@ -107,6 +108,36 @@ class Manager{
             alien.resume();
         })
 
+        Missile.instances.forEach(missile => {
+            missile.resume();
+        })
+
         ship.resume();
+    }
+
+    
+    static upgradeScore() {
+        const score = document.querySelector('#score-value');
+        score.innerHTML = parseInt(score.innerHTML) + 10;
+    }
+
+
+    static checkVictory() {
+        if (Alien.instances.length === 0) {
+            Manager.pauseGame();
+            const endPopUp = document.querySelector('#end-pop-up');
+            const message = document.querySelector('#pop-up-message');
+            endPopUp.style.display = 'flex';
+            message.innerHTML = 'Victory : all aliens were destroyed.';
+        }
+    }
+
+
+    static lose() {
+        Manager.pauseGame();
+        const endPopUp = document.querySelector('#end-pop-up');
+        const message = document.querySelector('#pop-up-message');
+        endPopUp.style.display = 'flex';
+        message.innerHTML = 'Defeat : ship destroyed.';
     }
 }

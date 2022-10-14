@@ -60,5 +60,6 @@ class Ship extends Entity{
 
     die(){
         this.img.remove();
+        Manager.lose();
     }
 }
