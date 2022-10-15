@@ -192,4 +192,8 @@ class Manager{
         }
         Manager.showLevel();
     }
+
+    static stopGame() {
+        
+    }
 }
