@@ -1,14 +1,29 @@
 'use strict';
 
-var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+const video = document.createElement("video");
+video.setAttribute("playsinline", "");
+video.setAttribute("autoplay", "");
+video.setAttribute("muted", "");
+video.style.width = "200px";
+video.style.height = "200px";
 
-// Put the object into storage
-localStorage.setItem('testObject', JSON.stringify(testObject));
+const facingMode = "user";
+const constraints = {
+  audio: false,
+  video: {
+    facingMode
+  }
+};
 
-// Retrieve the object from storage
-var retrievedObject = localStorage.getItem('testObject');
+navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+  video.srcObject = stream;
+});
 
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
+document.body.appendChild(video);
+
+// affichage du niveau
+Manager.showLevel();
+
 
 // affichage des paramètres de jeu
 const settings = document.querySelector('#settings');

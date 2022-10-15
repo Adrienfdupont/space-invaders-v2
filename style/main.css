@@ -12,8 +12,9 @@ header{
     position: relative;
 }
 
-#level{
+.level{
     position: absolute;
+    display: flex;
     left: 10px;
     top: 10px;
 }
@@ -53,4 +54,16 @@ header{
     right: 1em;
     top: 1em;
     cursor: pointer;
+}
+
+.progress-bar{
+    width: 8em;
+    height: 1em;
+    background-color: #616161;
+    margin-left: 1em;
+}
+
+.progress{
+    background-color: #d9d9d9;
+    height: 100%;
 }

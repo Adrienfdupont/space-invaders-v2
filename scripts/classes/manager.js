@@ -39,7 +39,16 @@ class Manager{
         img : '../images/wall.png',
         width : 0.5 * Manager.kw,
         height : 0.5 * Manager.kw,
-    }
+    };
+
+
+    static levels = {
+        1 : 0,
+        2 : 300,
+        3 : 800,
+        4 : 2000,
+        5 : 5000
+    };
 
 
     static generateShip(){
@@ -117,8 +126,8 @@ class Manager{
 
     
     static upgradeScore() {
-        const score = document.querySelector('#score-value');
-        score.innerHTML = parseInt(score.innerHTML) + 10;
+        const scoreValue = document.querySelector('#score-value');
+        scoreValue.innerHTML = parseInt(scoreValue.innerHTML) + 10;
     }
 
 
@@ -129,15 +138,58 @@ class Manager{
             const message = document.querySelector('#pop-up-message');
             endPopUp.style.display = 'flex';
             message.innerHTML = 'Victory : all aliens were destroyed.';
+
+            Manager.addPlayerPoints();
         }
     }
 
 
     static lose() {
+
         Manager.pauseGame();
         const endPopUp = document.querySelector('#end-pop-up');
         const message = document.querySelector('#pop-up-message');
         endPopUp.style.display = 'flex';
         message.innerHTML = 'Defeat : ship destroyed.';
+    }
+
+
+    static showLevel() {
+
+        // vérifier qu'un niveau est stocké dans le cache
+        if (!localStorage['playerLevel']) {
+            localStorage['playerLevel'] = 1;
+            localStorage['playerPoints'] = 0;
+        }
+        // afficher le niveau
+        const levelValue = document.querySelector('.level-value');
+        levelValue.innerHTML = localStorage['playerLevel'];
+
+        // afficher la progression
+        const progress = document.querySelector('.progress');
+        const nextLevelPoints = Manager.levels[parseInt(localStorage['playerLevel']) + 1];
+        const currentLevelPoints = Manager.levels[parseInt(localStorage['playerLevel'])];
+        const progressValue = 100 * (parseInt(localStorage['playerPoints']) - currentLevelPoints) / nextLevelPoints;
+        progress.style.width = progressValue + '%';
+    }
+
+
+    static addPlayerPoints() {
+
+        const scoreValue = document.querySelector('#score-value');
+        localStorage['playerPoints'] += scoreValue.innerHTML;
+
+        Manager.updateLevel();
+    }
+
+
+    static updateLevel() {
+
+        for (const i in Manager.levels) {
+            if (localStorage['playerPoints'] >= Manager.levels[i]) {
+                localStorage['playerLevel'] = i;
+            }
+        }
+        Manager.showLevel();
     }
 }

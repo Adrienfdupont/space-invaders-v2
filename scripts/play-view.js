@@ -15,3 +15,17 @@ pausePopUpCloseButton.onclick = () => {
     pausePopUp.style.display = 'none';
     Manager.resumeGame();
 }
+
+
+// revenir à la home view
+const quitButtons = document.querySelectorAll('.quit-button');
+quitButtons.forEach(quitButton => {
+    quitButton.onclick = () => {
+        Manager.endStopGame();
+
+        const homeView = document.querySelector('#home-view');
+        const playView = document.querySelector('#play-view');
+        playView.style.display = 'none';
+        homeView.style.display = 'block';
+    }
+})

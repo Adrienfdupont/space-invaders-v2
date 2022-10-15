@@ -33,7 +33,12 @@
         </div>
 
         <header>
-            <div id="level">Level</div>
+            <div class="level">Level :
+                <span class="level-value"></span>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
             <div id="title">Space Invaders</div>
             <div id="settings-open-button">Game settings</div>
         </header>
@@ -50,7 +55,9 @@
     <!------------------------- play view (page de jeu) ---------------------------------->
     <div id="play-view">
         <header>
-            <div id="level">Level</div>
+            <div id="level">Level :
+                <span id="level-value"></span>
+            </div>
             <button id="pause-button" class="button">Pause</button>
             <div id="score">Score : <span id="score-value">0</span></div>
         </header>
@@ -58,11 +65,12 @@
         <div id="pause-pop-up" class="pop-up">
             <i id="pause-pop-up-close-button" class="fa fa-xmark fa-2xl pop-up-close-button"></i>
             <div id="resume-button">Resume</div>
+            <div class="quit-button">Quit</div>
         </div>
 
         <div id="end-pop-up" class="pop-up">
             <div id="pop-up-message"></div>
-            <div id="resume-button">Quit</div>
+            <div class="quit-button">Quit</div>
         </div>
     </div>
 
