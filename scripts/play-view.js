@@ -21,7 +21,7 @@ pausePopUpCloseButton.onclick = () => {
 const quitButtons = document.querySelectorAll('.quit-button');
 quitButtons.forEach(quitButton => {
     quitButton.onclick = () => {
-        Manager.endStopGame();
+        Manager.stopGame();
 
         const homeView = document.querySelector('#home-view');
         const playView = document.querySelector('#play-view');
