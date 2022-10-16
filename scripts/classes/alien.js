@@ -29,7 +29,7 @@ class Alien extends Entity{
                 this.animation = requestAnimationFrame(()=>this.moveLeft());
             }
         } else {
-            this.die();
+            this.clear();
         }
     }
 
@@ -45,7 +45,7 @@ class Alien extends Entity{
                 this.animation = requestAnimationFrame(()=>this.moveRight());
             }
         } else {
-            this.die();
+            this.clear();
         }
     }
 
@@ -71,11 +71,16 @@ class Alien extends Entity{
     }
 
     die(){
+        this.clear();
+        Manager.upgradeScore();
+        // Manager.checkVictory();
+        console.log('test');
+    }
+
+    clear() {
         this.img.remove();
         Alien.instances.splice(Alien.instances.indexOf(this), 1);
         cancelAnimationFrame(this.animation);
         clearInterval(this.shot);
-        Manager.upgradeScore();
-        Manager.checkVictory();
     }
 }

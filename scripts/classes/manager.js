@@ -51,23 +51,8 @@ class Manager{
     };
 
 
-    static generateShip(){
-        return new Ship(
-            Manager.shipData.img,
-            Manager.shipData.width,
-            Manager.shipData.height,
-            Manager.shipData.speed,
-            Manager.shipData.reloadTime
-        );
-    }
-
-    static initAliensRows() {
-        Manager.alienRows = [];
-    }
-
-
     static addAlienRow() {
-
+        
         // trouver le point Y de la nouvelle ligne d'aliens
         let lower = window.innerHeight - 50;
         Manager.alienRows.forEach(row => {
@@ -178,6 +163,18 @@ class Manager{
         return alienRow.instances[alienRow.instances.length - 1];
     }
 
+
+    static generateShip(){
+
+        window.ship = new Ship(
+            Manager.shipData.img,
+            Manager.shipData.width,
+            Manager.shipData.height,
+            Manager.shipData.speed,
+            Manager.shipData.reloadTime
+        );
+    }
+
     
     static generateAlien(x, y){
         
@@ -195,12 +192,12 @@ class Manager{
 
     static initGame(){
 
-        // animations des aliens
+        const scoreValue = document.querySelector('#score-value');
+        scoreValue.innerHTML = '0';
+
         Alien.instances.forEach(alien =>{
-            alien.animation = requestAnimationFrame(()=>alien.moveRight());
-            alien.shot = setInterval(()=>{alien.shoot()},
-                Math.floor(Math.random() * (alien.reloadTime + alien.reloadTime / 2 - alien.reloadTime / 2) + alien.reloadTime / 2));
-        })
+            alien.initAction();
+        });
 
         ship.initAction();
     }
@@ -241,6 +238,35 @@ class Manager{
         ship.resume();
     }
 
+
+    static stopGame() {
+
+        Alien.instances.forEach(alien => {
+            alien.clear();
+        })
+
+        Manager.alienRows.forEach(alienRow => {
+            alienRow.options.remove();
+            alienRow.instances.forEach(instance => {
+                instance.img.remove();
+            })
+        })
+        Manager.alienRows = [];
+
+        LaserShot.instances.forEach(instance => {
+            instance.die();
+        })
+
+        Missile.instances.forEach(instance => {
+            instance.die();
+        })
+
+        ship.clear();
+
+        Manager.generateShip();
+        ship.initAction();
+    }
+
     
     static upgradeScore() {
         const scoreValue = document.querySelector('#score-value');
@@ -250,25 +276,25 @@ class Manager{
 
     static checkVictory() {
         if (Alien.instances.length === 0) {
-            Manager.pauseGame();
+            Manager.stopGame();
             const endPopUp = document.querySelector('#end-pop-up');
             const message = document.querySelector('#pop-up-message');
             endPopUp.style.display = 'flex';
             message.innerHTML = 'Victory : all aliens were destroyed.';
 
-            Manager.addPlayerPoints();
+            // Manager.addPlayerPoints();
         }
     }
 
 
-    static lose() {
+    // static lose() {
 
-        Manager.pauseGame();
-        const endPopUp = document.querySelector('#end-pop-up');
-        const message = document.querySelector('#pop-up-message');
-        endPopUp.style.display = 'flex';
-        message.innerHTML = 'Defeat : ship destroyed.';
-    }
+    //     Manager.pauseGame();
+    //     const endPopUp = document.querySelector('#end-pop-up');
+    //     const message = document.querySelector('#pop-up-message');
+    //     endPopUp.style.display = 'flex';
+    //     message.innerHTML = 'Defeat : ship destroyed.';
+    // }
 
 
     static showLevel() {
@@ -308,35 +334,5 @@ class Manager{
             }
         }
         Manager.showLevel();
-    }
-
-    static stopGame() {
-
-        Manager.alienRows.forEach(alienRow => {
-            alienRow.instances.forEach(alien => {
-                alien.img.remove();
-            });
-            alienRow.options.remove();
-        });
-
-        LaserShot.instances.forEach(laserShot => {
-            laserShot.pause();
-            laserShot.img.remove();
-        })
-
-        Alien.instances.forEach(alien => {
-            alien.pause();
-            alien.img.remove();
-        })
-
-        Missile.instances.forEach(missile => {
-            missile.pause();
-            missile.img().remove();
-        })
-
-        ship.img.remove();
-
-        Manager.generateShip();
-        Manager.initAliensRows();
     }
 }

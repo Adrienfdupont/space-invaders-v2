@@ -1,8 +1,8 @@
 'use strict';
 
 
-// affichage du niveau
 Manager.showLevel();
+Manager.generateShip();
 
 
 // affichage des paramètres de jeu
@@ -17,14 +17,10 @@ settingsCloseButton.onclick = () => {
 };
 
 
-// génération du vaisseau
-const ship = Manager.generateShip();
-
-
 // ajout d'aliens
 const alienRowAddButton = document.querySelector('#alien-row-add-button');
 const rowNumber = document.querySelector('#alien-row-number');
-Manager.initAliensRows();
+Manager.alienRows = [];
 alienRowAddButton.onclick = () => {
     Manager.addAlienRow();
 };
@@ -34,7 +30,7 @@ alienRowAddButton.onclick = () => {
 const playButton = document.querySelector('#play-button');
 const playView = document.querySelector('#play-view');
 const homeView = document.querySelector('#home-view');
-const alienPopUp = document.querySelector('#alien-pop-up'); 
+const alienPopUp = document.querySelector('#alien-pop-up');
 playButton.onclick = () => {
     // vérifier que le joueur a bien ajouté des aliens
     if (Manager.alienRows.length === 0){

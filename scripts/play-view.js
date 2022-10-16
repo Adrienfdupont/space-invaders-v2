@@ -27,5 +27,6 @@ quitButtons.forEach(quitButton => {
         const playView = document.querySelector('#play-view');
         playView.style.display = 'none';
         homeView.style.display = 'block';
+        pausePopUp.style.display = 'none';
     }
 })

@@ -34,3 +34,8 @@
 #pop-up-message{
     margin-bottom: 2em;
 }
+
+.quit-button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -53,13 +53,16 @@ class Ship extends Entity{
     }
 
     resume(){
-        window.onkeydown = (e) => {
-            this.controll(e);
-        }
+        this.initAction();
     }
 
     die(){
-        this.img.remove();
+        this.clear();
         Manager.lose();
+    }
+
+    clear() {
+        this.pause();
+        this.img.remove();
     }
 }
