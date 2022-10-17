@@ -20,5 +20,5 @@ function initVideo() {
 
 takePhotoButton.onclick = () => {
     context.drawImage(video, 0, 0, 400, 300);
-    Manager.updateAlienImage();
+    Manager.updateAlienImage(canvas.toDataURL());
 }

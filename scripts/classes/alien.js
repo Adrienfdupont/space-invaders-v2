@@ -84,5 +84,6 @@ class Alien extends Entity{
     }
 
     updateImage(src) {
+        this.img.src = src;
     }
 }

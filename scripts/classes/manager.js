@@ -32,7 +32,7 @@ class Manager{
         img : '../images/laser-shot.png',
         width : 0.2 * Manager.kw,
         height : 0.8 * Manager.kw,
-        speed : 0.5 * Manager.kh
+        speed : 0.75 * Manager.kh
     };
 
     static wallData = {
@@ -345,9 +345,9 @@ class Manager{
         Manager.showLevel();
     }
 
-    static updateAlienImage() {
+    static updateAlienImage(canvasURL) {
         Alien.instances.forEach(instance => {
-            instance.updateImage(canvas);
+            instance.updateImage(canvasURL);
         })
     }
 }
