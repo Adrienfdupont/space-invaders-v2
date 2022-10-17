@@ -44,7 +44,7 @@ class Manager{
 
     static levels = {
         1 : 0,
-        2 : 300,
+        2 : 100,
         3 : 800,
         4 : 2000,
         5 : 5000
@@ -269,70 +269,82 @@ class Manager{
 
     
     static upgradeScore() {
+
         const scoreValue = document.querySelector('#score-value');
         scoreValue.innerHTML = parseInt(scoreValue.innerHTML) + 10;
     }
 
 
     static checkVictory() {
+
         if (Alien.instances.length === 0) {
             Manager.stopGame();
-            const endPopUp = document.querySelector('#end-pop-up');
-            const message = document.querySelector('#pop-up-message');
-            endPopUp.style.display = 'flex';
-            message.innerHTML = 'Victory : all aliens were destroyed.';
-
-            // Manager.addPlayerPoints();
+            document.querySelector('#end-pop-up').style.display = 'flex';
+            document.querySelector('#pop-up-message').innerHTML = 'Victory : all aliens were destroyed.';
+            Manager.addPlayerPoints();
         }
     }
 
 
-    // static lose() {
+    static lose() {
 
-    //     Manager.pauseGame();
-    //     const endPopUp = document.querySelector('#end-pop-up');
-    //     const message = document.querySelector('#pop-up-message');
-    //     endPopUp.style.display = 'flex';
-    //     message.innerHTML = 'Defeat : ship destroyed.';
-    // }
+        Manager.pauseGame();
+        const endPopUp = document.querySelector('#end-pop-up');
+        const message = document.querySelector('#pop-up-message');
+        endPopUp.style.display = 'flex';
+        message.innerHTML = 'Defeat : ship destroyed.';
+    }
 
 
     static showLevel() {
 
         // vérifier qu'un niveau est stocké dans le cache
-        if (!localStorage['playerLevel']) {
-            localStorage['playerLevel'] = 1;
-            localStorage['playerPoints'] = 0;
+        if (!localStorage['playerData']) {
+            localStorage['playerData'] = JSON.stringify(
+                {
+                    'level' : 1,
+                    'points' : 0
+                }
+            );
         }
+        const readablePlayerData = JSON.parse(localStorage['playerData']);
+
         // afficher le niveau
-        const levelValue = document.querySelector('.level-value');
-        levelValue.innerHTML = localStorage['playerLevel'];
+        const levelValue = document.querySelectorAll('.level-value');
+        levelValue.forEach(element => {
+            element.innerHTML = readablePlayerData.level;
+        })
 
         // afficher la progression
-        const progress = document.querySelector('.progress');
-        const nextLevelPoints = Manager.levels[parseInt(localStorage['playerLevel']) + 1];
-        const currentLevelPoints = Manager.levels[parseInt(localStorage['playerLevel'])];
-        const progressValue = 100 * (parseInt(localStorage['playerPoints']) - currentLevelPoints) / nextLevelPoints;
-        progress.style.width = progressValue + '%';
+        const progress = document.querySelectorAll('.progress');
+        const nextLevelPoints = Manager.levels[parseInt(readablePlayerData.level) + 1];
+        const currentLevelPoints = Manager.levels[parseInt(readablePlayerData.level)];
+        const progressValue = 100 * (readablePlayerData.points - currentLevelPoints) / nextLevelPoints;
+        progress.forEach(element => {
+            element.style.width = progressValue + '%';
+        })
     }
 
 
     static addPlayerPoints() {
 
+        const readablePlayerData = JSON.parse(localStorage['playerData']);
         const scoreValue = document.querySelector('#score-value');
-        localStorage['playerPoints'] += scoreValue.innerHTML;
-
+        readablePlayerData.points = readablePlayerData.points + parseInt(scoreValue.innerHTML);
+        localStorage['playerData'] = JSON.stringify(readablePlayerData);
         Manager.updateLevel();
     }
 
 
     static updateLevel() {
 
-        for (const i in Manager.levels) {
-            if (localStorage['playerPoints'] >= Manager.levels[i]) {
-                localStorage['playerLevel'] = i;
+        const readablePlayerData = JSON.parse(localStorage['playerData']);
+        for (const level in Manager.levels) {
+            if (readablePlayerData.points >= Manager.levels[level]) {
+                readablePlayerData.level = level;
             }
         }
+        localStorage['playerData'] = JSON.stringify(readablePlayerData);
         Manager.showLevel();
     }
 }

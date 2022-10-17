@@ -73,8 +73,7 @@ class Alien extends Entity{
     die(){
         this.clear();
         Manager.upgradeScore();
-        // Manager.checkVictory();
-        console.log('test');
+        Manager.checkVictory();
     }
 
     clear() {
