@@ -198,8 +198,6 @@ class Manager{
         Alien.instances.forEach(alien =>{
             alien.initAction();
         });
-
-        ship.initAction();
     }
 
     
@@ -264,7 +262,6 @@ class Manager{
         ship.clear();
 
         Manager.generateShip();
-        ship.initAction();
     }
 
     

@@ -9,6 +9,9 @@ class Ship extends Entity{
         this.speed = speed;
         this.loaded = true;
         this.reloadTime = reloadTime;
+        window.onkeydown = (e) => {
+            this.controll(e);
+        }
     }
 
     controll(e){
@@ -39,12 +42,6 @@ class Ship extends Entity{
             this.loaded = false;
             setTimeout(() => {
                 this.loaded = true}, this.reloadTime);
-        }
-    }
-
-    initAction(){
-        window.onkeydown = (e) => {
-            this.controll(e);
         }
     }
 
