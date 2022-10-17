@@ -5,6 +5,14 @@ Manager.showLevel();
 Manager.generateShip();
 
 
+// effacer le cache
+const clearCacheButton = document.querySelector('#clear-cache-button');
+clearCacheButton.onclick = () => {
+    localStorage.clear();
+    location.reload();    
+}
+
+
 // affichage des paramètres de jeu
 const settings = document.querySelector('#settings');
 const settingsOpenButton = document.querySelector('#settings-open-button');

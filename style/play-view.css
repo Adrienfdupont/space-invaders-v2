@@ -25,6 +25,7 @@
 
 #resume-button{
     cursor: pointer;
+    margin-bottom: 2em;
 }
 
 #resume-button:hover{
