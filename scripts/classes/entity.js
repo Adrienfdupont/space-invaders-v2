@@ -15,6 +15,10 @@ class Entity{
     this.setBottom(bottom);
   }
 
+  hide() {
+    this.img.style.display = 'none';
+  }
+
   setLeft(int){
     this.img.style.left = int + 'px';
   }

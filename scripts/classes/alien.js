@@ -82,4 +82,7 @@ class Alien extends Entity{
         cancelAnimationFrame(this.animation);
         clearInterval(this.shot);
     }
+
+    updateImage(src) {
+    }
 }

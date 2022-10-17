@@ -50,7 +50,9 @@ class Ship extends Entity{
     }
 
     resume(){
-        this.initAction();
+        window.onkeydown = (e) => {
+            this.controll(e);
+        }
     }
 
     die(){

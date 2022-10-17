@@ -344,4 +344,10 @@ class Manager{
         localStorage['playerData'] = JSON.stringify(readablePlayerData);
         Manager.showLevel();
     }
+
+    static updateAlienImage() {
+        Alien.instances.forEach(instance => {
+            instance.updateImage(canvas);
+        })
+    }
 }

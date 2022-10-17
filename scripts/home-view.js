@@ -34,24 +34,6 @@ alienRowAddButton.onclick = () => {
 };
 
 
-// lancement de la partie : changement de vue
-const playButton = document.querySelector('#play-button');
-const playView = document.querySelector('#play-view');
-const homeView = document.querySelector('#home-view');
-const alienPopUp = document.querySelector('#alien-pop-up');
-playButton.onclick = () => {
-    // vérifier que le joueur a bien ajouté des aliens
-    if (Manager.alienRows.length === 0){
-        alienPopUp.style.display = 'flex';
-    } else {
-        hideSettings();
-        playView.style.display = 'block';
-        homeView.style.display = 'none';
-        Manager.initGame();
-    }
-};
-
-
 // contrôle pop-up
 const alienPopUpCloseButton = document.querySelector('#alien-pop-up-close-button');
 alienPopUpCloseButton.onclick = () => {

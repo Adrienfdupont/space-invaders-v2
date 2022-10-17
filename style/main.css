@@ -16,7 +16,8 @@ header{
     position: absolute;
     display: flex;
     left: 10px;
-    top: 10px;
+    top: 15px;
+    font-size: large;
 }
 
 .progress-bar{

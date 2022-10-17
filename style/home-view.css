@@ -12,6 +12,7 @@
     right: 10px;
     top: 10px;
     font-size: medium;
+    padding: 0.2em 2em;
 }
 
 #settings-close-button{
@@ -60,8 +61,16 @@
     right: 15em;
     font-size: medium;
     top: 10px;
+    padding: 0.2em 2em;
 }
 
+#choose-enemy-button {
+    position: absolute;
+    left: 20em;
+    font-size: medium;
+    top: 10px;
+    padding: 0.2em 2em;
+}
 
 @keyframes show-settings{
     from{
