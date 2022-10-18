@@ -40,10 +40,17 @@
                     <div class="progress"></div>
                 </div>
             </div>
+
             <button id="choose-enemy-button" class="button">Choose your enemy</button>
-            <div id="title">Space Invaders</div>
-            <button id="clear-cache-button" class="button">Clear the cache</button>
-            <button id="settings-open-button" class="button">Game settings</button>
+
+            <div class="title">Space Invaders</div>
+
+            <div>Memory : <span class="ram-value">_</span> GB</div>
+
+            <div>
+                <button id="clear-cache-button" class="button">Clear the cache</button>
+                <button id="settings-open-button" class="button">Game settings</button>
+            </div>
         </header>
 
         <button id="play-button" class="button">Play</button>
@@ -89,18 +96,34 @@
                     <div class="progress"></div>
                 </div>
             </div>
+
             <button id="choose-enemy-button" class="button">Choose your enemy</button>
-            <div id="title">Space Invaders</div>
-            <button id="clear-cache-button" class="button">Clear the cache</button>
-            <button id="settings-open-button" class="button">Game settings</button>
+
+            <div class="title">Space Invaders</div>
+
+            <div>Memory : <span class="ram-value">_</span> GB</div>
+
+            <div>
+                <button id="clear-cache-button" class="button">Clear the cache</button>
+                <button id="settings-open-button" class="button">Game settings</button>
+            </div>
         </header>
-        
-        <div id="take-photo">
-            <video id="video" width="500" height="500" autoplay></video>
-            <button id="take-photo-button" class="button">Take photo</button>
+
+        <div id="back-to-home">
+            <div id="back-to-home-button">Home</div>
         </div>
 
-        <canvas id="canvas" width="400" height="300"></canvas>
+        <div id="container">
+            <div id="take-photo">
+                <video id="video" width="500" height="500" autoplay></video>
+                <button id="take-photo-button" class="button">Take photo</button>
+            </div>
+    
+            <div id="validate-photo">
+                <canvas id="canvas" width="400" height="300"></canvas>
+                <button id="validate-button" class="button">Valider</button>
+            </div>
+        </div>
     </div>
 
     <script src="./scripts/home-view.js"></script>

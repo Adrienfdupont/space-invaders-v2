@@ -1,16 +1,5 @@
-#title{
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: xx-large;
-}
-
 /* div de paramètres et contrôles */
 #settings-open-button{
-    position: absolute;
-    right: 10px;
-    top: 10px;
     font-size: medium;
     padding: 0.2em 2em;
 }
@@ -57,18 +46,12 @@
 }
 
 #clear-cache-button{
-    position: absolute;
-    right: 15em;
     font-size: medium;
-    top: 10px;
     padding: 0.2em 2em;
 }
 
 #choose-enemy-button {
-    position: absolute;
-    left: 20em;
     font-size: medium;
-    top: 10px;
     padding: 0.2em 2em;
 }
 

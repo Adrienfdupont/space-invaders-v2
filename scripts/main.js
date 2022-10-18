@@ -41,3 +41,13 @@ quitButtons.forEach(quitButton => {
         endPopUp.style.display = 'none';
     }
 })
+
+const backToHomeButton = document.querySelector('#back-to-home-button');
+backToHomeButton.onclick = () => {
+    videoView.style.display = 'none';
+    homeView.style.display = 'block';
+    ship.display();
+    Alien.instances.forEach(instance => {
+        instance.display();
+    })
+}

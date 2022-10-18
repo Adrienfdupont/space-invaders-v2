@@ -85,5 +85,6 @@ class Alien extends Entity{
 
     updateImage(src) {
         this.img.src = src;
+        this.img.style.borderRadius = '50%';
     }
 }

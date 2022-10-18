@@ -19,6 +19,10 @@ class Entity{
     this.img.style.display = 'none';
   }
 
+  display () {
+    this.img.style.display = 'block';
+  }
+
   setLeft(int){
     this.img.style.left = int + 'px';
   }

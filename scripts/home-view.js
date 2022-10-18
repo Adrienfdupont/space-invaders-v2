@@ -1,8 +1,16 @@
 'use strict';
 
-
 Manager.showLevel();
 Manager.generateShip();
+
+
+//afficher la ram
+const ramValue = document.querySelectorAll('.ram-value');
+setInterval(() => {
+    ramValue.forEach(element => {
+        element.innerHTML = navigator.deviceMemory;
+    })
+}, 10000);
 
 
 // effacer le cache

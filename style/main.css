@@ -9,14 +9,17 @@ body{
 
 header{
     padding: 0.5em;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title{
+    font-size: xx-large;
 }
 
 .level{
-    position: absolute;
     display: flex;
-    left: 10px;
-    top: 15px;
     font-size: large;
 }
 

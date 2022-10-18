@@ -1,5 +1,10 @@
 #video-view {
     display: none;
+    flex-direction: column;
+}
+
+#container {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -11,4 +16,25 @@
     flex-direction: column;
     justify-content: center;
     margin-right: 2em;
+}
+
+#validate-photo {
+    display: flex;
+    flex-direction: column;
+}
+
+#validate-button {
+    margin-top: 2em;
+}
+
+#back-to-home {
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+    font-size: xx-large;
+}
+
+#back-to-home-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
